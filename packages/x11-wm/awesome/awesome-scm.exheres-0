@@ -34,7 +34,7 @@ build+run:
     x11-libs/libXinerama
     x11-libs/libX11
     >=x11-libs/libxcb-1.1
-    >=x11-utils/xcb-util-0.3
+    >=x11-utils/xcb-util-0.3.3
     dev-lang/lua
     dev-libs/libev
     dev-util/gperf

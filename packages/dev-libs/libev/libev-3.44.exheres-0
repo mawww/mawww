@@ -1,0 +1,32 @@
+# Copyright 2008 Fernando J. Pereda
+# Distributed under the terms of the GPLv2
+# Based in part upon 'libev-3.43.ebuild' from Gentoo, which is:
+#     Copyright 1999-2008 Gentoo Foundation
+
+SUPPORTED_AUTOCONF=( 2.5 )
+SUPPORTED_AUTOMAKE=( 1.10 )
+
+require autotools
+
+SUMMARY="Full-featured and high performance event loop library"
+DESCRIPTION="
+Features include child/pid watchers, periodic timers based on wallclock
+(absolute) time (in addition to timers using relative timeouts), as well as
+epoll/kqueue/event ports/inotify (for file watchers) support, fast timer
+management, time jump detection and correction, and ease-of-use.
+
+It can be used as a libevent replacement using its emulation API or directly
+embedded into your programs without the need for complex configuration support.
+A full-featured and well-documented perl interface is also available.
+"
+HOMEPAGE="http://software.schmorp.de/pkg/libev"
+DOWNLOADS="http://dist.schmorp.de/libev/Attic/${PNV}.tar.gz"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+DEFAULT_SRC_PREPARE_PATCHES=( -p1 "${FILES}/${PNV}-autotools.patch" )

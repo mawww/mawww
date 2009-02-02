@@ -1,0 +1,20 @@
+# Copyright 2008 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="virtual for Mail Transport Agents"
+HOMEPAGE=""
+DOWNLOADS=""
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    || (
+        mail-mta/nbsmtp
+        mail-mta/postfix
+        mail-mta/exim
+        mail-mta/sendmail
+    )
+"

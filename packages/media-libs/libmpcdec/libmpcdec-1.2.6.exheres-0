@@ -1,0 +1,13 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# based on libmpcdec-1.2.6.ebuild Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DESCRIPTION="musepack decoding library"
+HOMEPAGE="http://www.musepack.net"
+DOWNLOADS="http://files.musepack.net/source/${PNV}.tar.bz2"
+
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+MYOPTIONS=""
+

@@ -1,0 +1,17 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+DESCRIPTION="Light screen like program that only support the detach feature"
+HOMEPAGE="http://dtach.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/dtach/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="x86 amd64"
+MYOPTIONS=""
+
+src_install() {
+    dobin dtach || dir "dobin failed"
+    doman dtach.1 || dir "doman failed"
+    dodoc README || dir "dodoc failed"
+}

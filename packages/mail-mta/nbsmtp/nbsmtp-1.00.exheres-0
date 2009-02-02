@@ -1,0 +1,30 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/nbsmtp/nbsmtp-1.00.ebuild,v 1.4 2005/07/30 20:48:45 killerfox Exp $
+
+DESCRIPTION="Extremely simple MTA to get mail off the system to a relayhost"
+DOWNLOADS="http://www.it.uc3m.es/~ferdy/nbsmtp/nbsmtp-1.00.tar.bz2"
+HOMEPAGE="http://nbsmtp.ferdyx.org"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="ssl ipv6 debug"
+PLATFORMS="alpha ~amd64 hppa ppc sparc x86"
+
+DEPENDENCIES="
+    build+run:
+        ssl? ( dev-libs/openssl )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
+
+src_install() {
+    dodir /usr/bin
+    dobin nbsmtp
+    dobin scripts/nbqueue
+    doman nbsmtprc.5 nbsmtp.8
+    dodoc INSTALL DOCS Doxyfile
+}
+

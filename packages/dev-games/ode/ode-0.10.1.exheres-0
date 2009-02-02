@@ -20,7 +20,7 @@ DEPENDENCIES="
 
 src_prepare() {
     sed -i \
-    -e "s:\$.*/drawstuff/textures:/usr/share/doc/${PF}/examples:" \
+    -e "s:\$.*/drawstuff/textures:/usr/share/doc/${PNVR}/examples:" \
     drawstuff/src/Makefile.in \
     ode/demo/Makefile.in \
     || die "sed Makefile.in failed"
@@ -53,14 +53,14 @@ src_install() {
     fi
     if option examples; then
         cd ode/demo
-        exeinto /usr/share/doc/${PF}/examples
+        exeinto /usr/share/doc/${PNVR}/examples
         local f
         for f in *.c* ; do
             doexe .libs/${f%.*} || die "doexe ${f%.*} failed"
         done
         cd ../..
         doexe drawstuff/dstest/dstest
-        insinto /usr/share/doc/${PF}/examples
+        insinto /usr/share/doc/${PNVR}/examples
         doins ode/demo/*.{c,cpp,h} \
         drawstuff/textures/*.ppm \
         drawstuff/dstest/dstest.cpp \

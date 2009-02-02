@@ -1,0 +1,20 @@
+# Copyright (c) 2007 Alexander Færøy <ahf@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="The X protocol C-language Bindings utilities"
+HOMEPAGE="http://xcb.freedesktop.org/"
+DOWNLOADS="http://xcb.freedesktop.org/dist/${PNV}.tar.bz2"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+          dev-util/gperf
+        >=x11-proto/xproto-7.0.8
+        >=dev-util/pkg-config-0.20
+    build+run:
+        >=x11-libs/libxcb-1.0
+"

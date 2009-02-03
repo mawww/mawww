@@ -1,5 +1,5 @@
 # Copyright 2009 Maxime Coste <frrrwww@gmail.com>
-# based on ode-0.10.1.ebuild Copyright 1999-2009 Gentoo Foundation
+# Based on ode-0.10.1.ebuild Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 DESCRIPTION="Open Dynamics Engine SDK"

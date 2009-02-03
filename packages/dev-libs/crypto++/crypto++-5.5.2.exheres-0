@@ -26,5 +26,6 @@ src_compile() {
 }
 
 src_test() {
+    # bypass tests as they do not work
     true
 }

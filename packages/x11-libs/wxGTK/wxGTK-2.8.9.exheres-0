@@ -1,0 +1,68 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Cross-Platform GUI Library"
+DESCRIPTION="
+wxWidgets gives you a single, easy-to-use API for writing GUI applications on
+multiple platforms that still utilize the native platform's controls and
+utilities.
+"
+HOMEPAGE="www.wxwidgets.org"
+DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+MYOPTIONS="
+png
+jpeg
+tiff
+xpm
+zlib
+sdl
+gnome
+opengl
+xml
+unicode
+threads
+"
+
+DEPENDENCIES="
+    build+run:
+        >=x11-libs/gtk+-2
+        png? ( media-libs/libpng )
+        jpeg? ( media-libs/jpeg )
+        tiff? ( media-libs/tiff )
+        xpm? ( x11-libs/libXpm )
+        zlib? ( sys-libs/zlib )
+        sdl? ( media-libs/libSDL )
+        gnome? ( gnome-platform/gnome-vfs )
+        xml? ( dev-libs/expat )
+"
+
+src_configure() {
+    econf \
+    --with-gtk \
+    --enable-intl \
+    --enable-controls \
+    $(option_with png libpng) \
+    $(option_with jpeg libjpeg) \
+    $(option_with tiff libtiff) \
+    $(option_with xpm libxpm) \
+    $(option_with zlib) \
+    $(option_with sdl) \
+    $(option_with xml expat) \
+    $(option_with opengl) \
+    $(option_enable unicode) \
+    $(option_enable threads)
+}
+
+src_install()
+{
+    default
+    dodoc docs/* || die "cannot install docs"
+    # remove empty directories
+    rmdir ${IMAGE}/usr/share/locale/*/LC_MESSAGES
+    rmdir ${IMAGE}/usr/share/locale/*
+    rmdir ${IMAGE}/usr/share/locale
+}

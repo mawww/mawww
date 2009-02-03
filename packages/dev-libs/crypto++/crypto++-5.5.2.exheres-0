@@ -1,0 +1,25 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="C++ cryptographic library"
+DESCRIPTION="
+Crypto++ is a C++ class library containing various cryptographic schemes
+"
+HOMEPAGE="http://www.cryptopp.org"
+DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp552.zip"
+
+LICENCES="cryptopp"
+SLOT="0"
+PLATFORMS="x86 amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+src_install() {
+    make ${MAKEOPTS} PREFIX=${IMAGE}/usr/ install
+    rm -r ${IMAGE}/usr/bin
+}
+
+src_test() {
+    true
+}

@@ -20,6 +20,11 @@ src_install() {
     rm -r ${IMAGE}/usr/bin
 }
 
+src_compile() {
+    # do not compile with more that -O1
+    emake CXXFLAGS="${CXXFLAGS/-O?/-O1}"
+}
+
 src_test() {
     true
 }

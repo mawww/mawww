@@ -7,25 +7,13 @@ wxWidgets gives you a single, easy-to-use API for writing GUI applications on
 multiple platforms that still utilize the native platform's controls and
 utilities.
 "
-HOMEPAGE="www.wxwidgets.org"
+HOMEPAGE="http://www.wxwidgets.org"
 DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~x86 ~amd64"
-MYOPTIONS="
-png
-jpeg
-tiff
-xpm
-zlib
-sdl
-gnome
-opengl
-xml
-unicode
-threads
-"
+MYOPTIONS="png jpeg tiff xpm zlib sdl gnome opengl xml unicode threads"
 
 DEPENDENCIES="
     build+run:

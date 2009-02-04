@@ -50,7 +50,5 @@ src_install()
     default
     dodoc docs/* || die "cannot install docs"
     # remove empty directories
-    rmdir ${IMAGE}/usr/share/locale/*/LC_MESSAGES
-    rmdir ${IMAGE}/usr/share/locale/*
-    rmdir ${IMAGE}/usr/share/locale
+    find "${IMAGE}" -type d -empty -delete
 }

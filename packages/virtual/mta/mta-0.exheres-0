@@ -12,9 +12,9 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     || (
-        mail-mta/nbsmtp
         mail-mta/postfix
         mail-mta/exim
         mail-mta/sendmail
+        mail-mta/nbsmtp
     )
 "

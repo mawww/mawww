@@ -11,7 +11,7 @@ PLATFORMS="x86 amd64"
 MYOPTIONS=""
 
 src_install() {
-    dobin dtach || dir "dobin failed"
-    doman dtach.1 || dir "doman failed"
-    dodoc README || dir "dodoc failed"
+    dobin dtach || die "dobin failed"
+    doman dtach.1 || die "doman failed"
+    dodoc README || die "dodoc failed"
 }

@@ -50,7 +50,6 @@ src_install() {
     docdir=${IMAGE}/usr/share/doc/${PNV}
     mandir=${IMAGE}/usr/share/man/man1
     export LOUTLIB=${libdir}
-    export PATH="${bindir}:${PATH}"
 
     mkdir -p ${bindir} ${docdir} ${mandir}
 
@@ -60,7 +59,7 @@ src_install() {
          MANDIR=${mandir} \
          install installdoc installman || die "make install failed"
 
-    lout -x -s ${IMAGE}/usr/share/lout/include/init || die "lout init failed"
+    ${bindir}/lout -x -s ${IMAGE}/usr/share/lout/include/init || die "lout init failed"
 
     mv ${docdir}/README{,.docs}
     dodoc README READMEPDF blurb blurb.short whatsnew

@@ -12,12 +12,12 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
-amule-daemon [[ description = [ Enable aMule daemon support ] ]]
-amulecmd [[ description = [ Enable aMule command line client ] ]]
-webserver [[ description = [ Enable aMule web server ] ]]
-remote-gui [[ description = [ Enable aMule remote gui ] ]]
-gd
-upnp [[ description = [ Enable support for upnp ] ]]
+    amule-daemon [[ description = [ Enable aMule daemon support ] ]]
+    amulecmd [[ description = [ Enable aMule command line client ] ]]
+    webserver [[ description = [ Enable aMule web server ] ]]
+    remote-gui [[ description = [ Enable aMule remote gui ] ]]
+    upnp [[ description = [ Enable support for upnp ] ]]
+    gd
 "
 
 DEPENDENCIES="

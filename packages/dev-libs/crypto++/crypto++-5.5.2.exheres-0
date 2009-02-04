@@ -16,7 +16,7 @@ MYOPTIONS=""
 DEPENDENCIES=""
 
 src_install() {
-    make ${MAKEOPTS} PREFIX=${IMAGE}/usr/ install
+    emake PREFIX=${IMAGE}/usr/ install
     rm -r ${IMAGE}/usr/bin
 }
 

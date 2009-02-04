@@ -45,8 +45,7 @@ src_configure() {
     $(option_enable threads)
 }
 
-src_install()
-{
+src_install() {
     default
     dodoc docs/* || die "cannot install docs"
     # remove empty directories

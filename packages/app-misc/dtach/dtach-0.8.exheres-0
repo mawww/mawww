@@ -7,11 +7,11 @@ DOWNLOADS="mirror://sourceforge/dtach/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="x86 amd64"
+PLATFORMS="amd64 x86"
 MYOPTIONS=""
 
 src_install() {
-    dobin dtach || die "dobin failed"
-    doman dtach.1 || die "doman failed"
-    dodoc README || die "dodoc failed"
+    dobin dtach
+    doman dtach.1
+    dodoc README
 }

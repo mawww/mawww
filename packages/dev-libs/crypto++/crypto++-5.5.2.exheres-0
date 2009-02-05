@@ -10,7 +10,7 @@ DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp552.zip"
 
 LICENCES="cryptopp"
 SLOT="0"
-PLATFORMS="x86 amd64"
+PLATFORMS="amd64 x86"
 MYOPTIONS=""
 
 DEPENDENCIES=""

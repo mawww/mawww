@@ -12,7 +12,7 @@ DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="png jpeg tiff xpm zlib sdl gnome opengl xml unicode threads"
 
 DEPENDENCIES="
@@ -47,7 +47,7 @@ src_configure() {
 
 src_install() {
     default
-    dodoc docs/* || die "cannot install docs"
+    dodoc docs/*
     # remove empty directories
     find "${IMAGE}" -type d -empty -delete
 }

@@ -24,16 +24,13 @@ DEPENDENCIES="
     build+run:
         >=x11-libs/wxGTK-2.8
           sys-libs/zlib
-          amulecmd? ( sys-libs/readline )
           dev-libs/crypto++
+        amulecmd? ( sys-libs/readline )
         webserver? ( >=media-libs/libpng-1.2 )
         gd? ( >=media-libs/gd-2 )
         upnp? ( >=net-libs/libupnp-3 )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( upnp amule-daemon amulecmd webserver "remote-gui gui" "gd cas" )
+WORK=${WORKBASE}/${MY_PNV}
 
-src_unpack() {
-    unpack ${ARCHIVES}
-    mv ${MY_PNV} ${PNV}
-}
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( upnp amule-daemon amulecmd webserver "remote-gui gui" "gd cas" )

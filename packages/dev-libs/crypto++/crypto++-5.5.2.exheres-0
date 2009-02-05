@@ -8,6 +8,8 @@ Crypto++ is a C++ class library containing various cryptographic schemes
 HOMEPAGE="http://www.cryptopp.org"
 DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp552.zip"
 
+RESTRICT=test
+
 LICENCES="cryptopp"
 SLOT="0"
 PLATFORMS="amd64 x86"
@@ -25,7 +27,3 @@ src_compile() {
     emake CXXFLAGS="${CXXFLAGS/-O?/-O1}"
 }
 
-src_test() {
-    # bypass tests as they do not work
-    true
-}

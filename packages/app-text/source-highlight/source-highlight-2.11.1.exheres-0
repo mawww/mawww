@@ -3,7 +3,7 @@
 
 SUMMARY="This program, given a source file, produce a document with syntax-highlighting"
 HOMEPAGE="http://www.gnu.org/software/src-highlight"
-DOWNLOADS="ftp://ftp.gnu.org/gnu/src-highlite/${PNV}.tar.gz"
+DOWNLOADS="mirror://gnu/src-highlite/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"

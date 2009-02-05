@@ -13,16 +13,16 @@ DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="png jpeg tiff xpm zlib sdl gnome opengl xml unicode threads"
+MYOPTIONS="tiff sdl gnome opengl xml unicode threads"
 
 DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2
-        png? ( media-libs/libpng )
-        jpeg? ( media-libs/jpeg )
+          media-libs/libpng
+          media-libs/jpeg
+          x11-libs/libXpm
+          sys-libs/zlib
         tiff? ( media-libs/tiff )
-        xpm? ( x11-libs/libXpm )
-        zlib? ( sys-libs/zlib )
         sdl? ( media-libs/libSDL )
         gnome? ( gnome-platform/gnome-vfs )
         xml? ( dev-libs/expat )
@@ -30,24 +30,25 @@ DEPENDENCIES="
 
 src_configure() {
     econf \
-    --with-gtk \
-    --enable-intl \
-    --enable-controls \
-    $(option_with png libpng) \
-    $(option_with jpeg libjpeg) \
-    $(option_with tiff libtiff) \
-    $(option_with xpm libxpm) \
-    $(option_with zlib) \
-    $(option_with sdl) \
-    $(option_with xml expat) \
-    $(option_with opengl) \
-    $(option_enable unicode) \
-    $(option_enable threads)
+        --with-gtk \
+        --enable-intl \
+        --enable-controls \
+        --with-libpng \
+        --with-libjpeg \
+        --with-libxpm \
+        --with-zlib \
+        $(option_with tiff libtiff) \
+        $(option_with sdl) \
+        $(option_with xml expat) \
+        $(option_with opengl) \
+        $(option_enable unicode) \
+        $(option_enable threads)
 }
 
 src_install() {
     default
-    dodoc docs/*
+    insinto /usr/share/doc/${PVNR}
+    doins -r docs/*
     # remove empty directories
     find "${IMAGE}" -type d -empty -delete
 }

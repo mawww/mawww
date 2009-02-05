@@ -28,13 +28,13 @@ src_prepare() {
 
 src_configure() {
     econf \
-    --disable-dependency-tracking \
-    --enable-shared \
-    $(option_enable debug asserts) \
-    $(option_enable double-precision) \
-    $(option_enable examples demos) \
-    $(option_enable gyroscopic) \
-    $(option_with examples drawstuff X11)
+        --disable-dependency-tracking \
+        --enable-shared \
+        $(option_enable debug asserts) \
+        $(option_enable double-precision) \
+        $(option_enable examples demos) \
+        $(option_enable gyroscopic) \
+        $(option_with examples drawstuff X11)
 }
 
 src_compile() {
@@ -49,6 +49,7 @@ src_install() {
     default
     dodoc CHANGELOG.txt README.txt
     if option doc ; then
+        insinto /usr/share/doc/${PNVR}/html
         doins -r docs/*
     fi
     if option examples; then

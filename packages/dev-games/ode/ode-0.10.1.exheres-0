@@ -38,7 +38,7 @@ src_configure() {
 }
 
 src_compile() {
-    emake || die "emake failed"
+    emake
     if option doc ; then
         cd ode/doc
         doxygen Doxyfile || die "doxygen failed"
@@ -49,14 +49,14 @@ src_install() {
     default
     dodoc CHANGELOG.txt README.txt
     if option doc ; then
-        dohtml docs/* || die "dohtml failed"
+        doins -r docs/*
     fi
     if option examples; then
         cd ode/demo
         exeinto /usr/share/doc/${PNVR}/examples
         local f
         for f in *.c* ; do
-            doexe .libs/${f%.*} || die "doexe ${f%.*} failed"
+            doexe .libs/${f%.*}
         done
         cd ../..
         doexe drawstuff/dstest/dstest
@@ -64,8 +64,7 @@ src_install() {
         doins ode/demo/*.{c,cpp,h} \
         drawstuff/textures/*.ppm \
         drawstuff/dstest/dstest.cpp \
-        drawstuff/src/{drawstuff.cpp,internal.h,x11.cpp} \
-        || die "doins failed"
+        drawstuff/src/{drawstuff.cpp,internal.h,x11.cpp}
     fi
 }
 

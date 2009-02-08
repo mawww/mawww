@@ -1,0 +1,26 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="2D Motocross platform game"
+HOMEPAGE="http://xmoto.tuxfamily.org"
+DOWNLOADS="http://download.tuxfamily.org/xmoto/xmoto/${PV}/${PNV}-src.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    >=dev-lang/lua-5.1
+    >=dev-games/ode-0.10
+    >=media-libs/SDL_ttf-1.2
+    >=media-libs/SDL_mixer-1.2
+    >=media-libs/SDL_net-1.2
+    >=dev-db/sqlite-3
+    >=media-libs/jpeg-6
+    >=media-libs/libpng-1.2
+    >=net-misc/curl-3
+      sys-libs/zlib
+      app-arch/bzip2
+"
+

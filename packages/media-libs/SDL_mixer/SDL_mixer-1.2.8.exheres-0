@@ -1,0 +1,32 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require SDL_lib
+
+SUMMARY="Multichannel audio mixer library for SDL"
+SLOT="0"
+MYOPTIONS="
+    mikmod [[ description = [ support mod files with libmikmod ] ]]
+    ogg 
+    (
+        smpeg [[ description = [ support mp3 files with smpeg ] ]]
+        mad [[ description = [ support mp3 files with libmad ] ]]
+    ) [[ number-selected = at-most-one ]]
+"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        >=media-libs/libSDL-1.2.10
+        mikmod? ( media-libs/libmikmod )
+        ogg? ( media-libs/libvorbis )
+        mad? ( media-libs/libmad )
+        smpeg? ( media-libs/smpeg )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( \
+    "ogg music-ogg" \
+    "smpeg music-mp3" \
+    "mad music-mp3-mad-gpl" \
+    "mikmod music-libmikmod" \
+)

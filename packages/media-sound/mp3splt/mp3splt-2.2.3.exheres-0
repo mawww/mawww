@@ -1,0 +1,15 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="mp3 and ogg splitter"
+HOMEPAGE="http://mp3splt.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/mp3splt/${PNV}.tar.gz"
+
+LICENCES="GPL"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    >=media-libs/libmp3splt-0.5.4
+"

@@ -35,7 +35,7 @@ DEPENDENCIES="
 WORK=${WORKBASE}/${MY_PNV}
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( \
-    upnp amule-daemon amulecmd webserver "remote-gui gui" "gd cas" \
+    upnp amule-daemon amulecmd webserver "remote-gui amule-gui" "gd cas" \
     "!nomonolithic monolithic" \
 )
 

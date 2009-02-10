@@ -6,7 +6,7 @@ require SDL_lib
 SUMMARY="Image file loading library for SDL"
 SLOT="0"
 MYOPTIONS="tiff"
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:

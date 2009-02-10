@@ -12,7 +12,7 @@ DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 MYOPTIONS="tiff sdl gnome opengl xml unicode threads"
 
 DEPENDENCIES="

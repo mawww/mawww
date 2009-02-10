@@ -10,7 +10,7 @@ DOWNLOADS="mirror://sourceforge/amule/${MY_PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 MYOPTIONS="
     amule-daemon [[ description = [ Enable aMule daemon support ] ]]
     amulecmd [[ description = [ Enable aMule command line client ] ]]

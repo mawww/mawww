@@ -24,7 +24,7 @@ DOWNLOADS="http://dist.schmorp.de/libev/Attic/${PNV}.tar.gz"
 
 LICENCES="BSD-2"
 SLOT="0"
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES=""

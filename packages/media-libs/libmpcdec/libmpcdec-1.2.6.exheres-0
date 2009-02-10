@@ -8,6 +8,6 @@ DOWNLOADS="http://files.musepack.net/source/${PNV}.tar.bz2"
 
 LICENCES="BSD"
 SLOT="0"
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 MYOPTIONS=""
 

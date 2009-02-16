@@ -13,7 +13,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         >=dev-cpp/libxml++-2.6
-        >=media-libs/libSDL-1.2
+        >=media-libs/SDL-1.2
         >=media-libs/SDL_image-1.2
         >=media-libs/SDL_mixer-1.2
         >=media-libs/SDL_ttf-2.0

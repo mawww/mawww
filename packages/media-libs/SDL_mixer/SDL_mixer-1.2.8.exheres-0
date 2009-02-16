@@ -17,7 +17,7 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/libSDL-1.2.10
+        >=media-libs/SDL-1.2.10
         mikmod? ( media-libs/libmikmod )
         ogg? ( media-libs/libvorbis )
         mad? ( media-libs/libmad )

@@ -23,7 +23,7 @@ DEPENDENCIES="
           x11-libs/libXpm
           sys-libs/zlib
         tiff? ( media-libs/tiff )
-        sdl? ( media-libs/libSDL )
+        sdl? ( media-libs/SDL )
         gnome? ( gnome-platform/gnome-vfs )
         xml? ( dev-libs/expat )
 "

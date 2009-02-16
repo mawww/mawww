@@ -10,6 +10,6 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/libSDL-1.2.10
+        >=media-libs/SDL-1.2.10
         >=media-libs/freetype-2.0
 "

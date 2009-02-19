@@ -1,0 +1,17 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="OBEX fuse file system"
+HOMEPAGE="http://dev.zuckschwerdt.org/openobex/wiki/ObexFs"
+DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.gz"
+
+LICENCES="LGPL"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    >=net-wireless/obexftp-0.23
+    >=sys-fs/fuse-2.4
+"
+

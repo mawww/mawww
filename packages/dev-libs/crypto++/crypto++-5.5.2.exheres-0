@@ -10,14 +10,13 @@ Crypto++ is a C++ class library containing various cryptographic schemes
 HOMEPAGE="http://www.cryptopp.org"
 DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp552.zip"
 
-RESTRICT=test
-
 LICENCES="cryptopp"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
-DEPENDENCIES=""
+WORK=${WORKBASE}
+RESTRICT=test
 
 src_install() {
     emake PREFIX=${IMAGE}/usr/ install

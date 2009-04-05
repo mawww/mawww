@@ -19,7 +19,12 @@ DEPENDENCIES="
 "
 
 RESTRICT=configure
-DEFAULT_SRC_INSTALL_PARAMS=( bindir=/usr/bin sbindir=/usr/sbin mandir=/usr/man/man1 docdir=/usr/share/doc/${PNV} )
+DEFAULT_SRC_INSTALL_PARAMS=( 
+    bindir=/usr/bin 
+    sbindir=/usr/sbin 
+    mandir=/usr/share/man/man1 
+    docdir=/usr/share/doc/${PNV} 
+)
 
 src_compile() {
     make sqlite=$(if option sqlite; then echo true; else echo false; fi)

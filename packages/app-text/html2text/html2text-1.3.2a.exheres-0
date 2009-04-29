@@ -5,6 +5,7 @@ SUMMARY="Convert HTML to ANSI-escaped text"
 HOMEPAGE="http://www.mbayer.de/html2text"
 DOWNLOADS="http://www.mbayer.de/html2text/downloads/${PNV}.tar.gz
     ftp://ftp.ibiblio.org/pub/linux/apps/www/converters/$PNV.tar.gz"
+UPSTREAM_CHANGELOG="http://www.mbayer.de/html2text/changes.shtml"
 
 LICENCES="GPL-2"
 SLOT="0"

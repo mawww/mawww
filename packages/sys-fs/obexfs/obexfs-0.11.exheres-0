@@ -7,7 +7,7 @@ DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.gz"
 
 LICENCES="LGPL"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="

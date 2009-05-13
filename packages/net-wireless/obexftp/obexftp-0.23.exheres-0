@@ -7,13 +7,12 @@ DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.bz2"
 
 LICENCES="LGPL"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~amd64"
 MYOPTIONS="swig"
 
 DEPENDENCIES="
     build+run:
         >=net-wireless/openobex-1.5
-        >=sys-fs/fuse-2.4
         swig? ( dev-lang/swig )
 "
 

@@ -14,7 +14,7 @@ MYOPTIONS="zlib doc"
 
 DEPENDENCIES="
     build+run:
-        zlib? ( >=sys-libs/zlib-1.1.4 )
+        zlib? ( sys-libs/zlib[>=1.1.4] )
 "
 
 src_compile() {

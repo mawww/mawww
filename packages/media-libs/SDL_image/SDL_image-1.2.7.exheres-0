@@ -10,8 +10,8 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/SDL-1.2.10
-          media-libs/libpng
+        media-libs/SDL[>=1.2.10]
+        media-libs/libpng
           media-libs/jpeg
         tiff? ( media-libs/tiff )
 "

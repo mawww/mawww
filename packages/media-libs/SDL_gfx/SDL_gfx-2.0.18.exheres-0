@@ -12,7 +12,7 @@ MYOPTIONS="platform: x86"
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/SDL-1.2.10
+        media-libs/SDL[>=1.2.10]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "platform:x86 mmx" )

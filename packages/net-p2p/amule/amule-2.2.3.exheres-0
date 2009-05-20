@@ -23,13 +23,13 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/wxGTK-2.8
+        x11-libs/wxGTK[>=2.8]
           sys-libs/zlib
           dev-libs/crypto++
         amulecmd? ( sys-libs/readline )
-        webserver? ( >=media-libs/libpng-1.2 )
-        gd? ( >=media-libs/gd-2 )
-        upnp? ( >=net-libs/libupnp-3 )
+        webserver? ( media-libs/libpng[>=1.2] )
+        gd? ( media-libs/gd[>=2] )
+        upnp? ( net-libs/libupnp[>=3] )
 "
 
 WORK=${WORKBASE}/${MY_PNV}

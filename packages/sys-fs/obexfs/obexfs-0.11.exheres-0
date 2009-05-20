@@ -11,7 +11,7 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    >=net-wireless/obexftp-0.23
-    >=sys-fs/fuse-2.4
+    net-wireless/obexftp[>=0.23]
+    sys-fs/fuse[>=2.4]
 "
 

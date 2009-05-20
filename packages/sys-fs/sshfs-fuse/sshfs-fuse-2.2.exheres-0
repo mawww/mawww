@@ -12,8 +12,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=sys-fs/fuse-2.2
-        >=dev-libs/glib-2.0
+        sys-fs/fuse[>=2.2]
+        dev-libs/glib[>=2.0]
     run:
         net-misc/openssh
 "

@@ -17,7 +17,7 @@ MYOPTIONS="tiff sdl gnome opengl xml unicode threads"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2
+        x11-libs/gtk+[>=2]
           media-libs/libpng
           media-libs/jpeg
           x11-libs/libXpm

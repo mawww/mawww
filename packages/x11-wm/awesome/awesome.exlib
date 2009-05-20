@@ -30,7 +30,7 @@ build+run:
     x11-libs/libXrender
     x11-libs/libXinerama
     x11-libs/libX11
-    >=x11-libs/libxcb-1.1
+    x11-libs/libxcb[>=1.1]
     dev-lang/lua
     dev-libs/libev
     dev-util/gperf
@@ -43,7 +43,7 @@ build:
     dev-util/pkg-config
     x11-proto/xineramaproto
     doc? (
-        <app-doc/asciidoc-8.3 [[ description = [ currently fails with 8.3 ] ]]
+        app-doc/asciidoc[<8.3] [[ description = [ currently fails with 8.3 ] ]]
         app-text/xmlto
         app-text/docbook-xsl-stylesheets
         app-doc/luadoc )
@@ -55,15 +55,15 @@ post,suggested:
 if ! ever at_least 3.3-rc1 ; then
     DEPENDENCIES="${DEPENDENCIES}
         build+run:
-            >=x11-utils/xcb-util-0.3
+            x11-utils/xcb-util[>=0.3]
             dbus? ( sys-apps/dbus )
         "
 else
     DEPENDENCIES="${DEPENDENCIES}
         build+run:
-            >=x11-utils/xcb-util-0.3.4
-            >=x11-libs/startup-notification-0.10
-            >=x11-libs/libxdg-basedir-1.0.0
+            x11-utils/xcb-util[>=0.3.4]
+            x11-libs/startup-notification[>=0.10]
+            x11-libs/libxdg-basedir[>=1.0.0]
             sys-apps/dbus
         "
 fi

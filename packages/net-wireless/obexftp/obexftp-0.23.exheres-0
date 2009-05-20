@@ -12,7 +12,7 @@ MYOPTIONS="swig"
 
 DEPENDENCIES="
     build+run:
-        >=net-wireless/openobex-1.5
+        net-wireless/openobex[>=1.5]
         swig? ( dev-lang/swig )
 "
 

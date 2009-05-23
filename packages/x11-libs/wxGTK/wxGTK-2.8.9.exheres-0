@@ -12,12 +12,14 @@ DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
-MYOPTIONS="tiff sdl gnome opengl xml unicode threads"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    gnome joystick opengl sdl threads tiff unicode xml
+    joystick [[ requires = [ threads ] ]]"
 
 DEPENDENCIES="
     build+run:
-        x11-libs/gtk+[>=2]
+          x11-libs/gtk+[>=2]
           media-libs/libpng
           media-libs/jpeg
           x11-libs/libXpm
@@ -33,14 +35,15 @@ src_configure() {
         --with-gtk \
         --enable-intl \
         --enable-controls \
-        --with-libpng \
         --with-libjpeg \
+        --with-libpng \
         --with-libxpm \
         --with-zlib \
-        $(option_with tiff libtiff) \
-        $(option_with sdl) \
-        $(option_with xml expat) \
         $(option_with opengl) \
+        $(option_with sdl) \
+        $(option_with tiff libtiff) \
+        $(option_with xml expat) \
+        $(option_enable joystick) \
         $(option_enable unicode) \
         $(option_enable threads)
 }

@@ -6,7 +6,7 @@ SUMMARY="musepack decoding library"
 HOMEPAGE="http://www.musepack.net"
 DOWNLOADS="http://files.musepack.net/source/${PNV}.tar.bz2"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""

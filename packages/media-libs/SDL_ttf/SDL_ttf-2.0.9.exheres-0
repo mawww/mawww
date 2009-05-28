@@ -6,7 +6,7 @@ require SDL_lib
 SUMMARY="truetype font support library for SDL"
 SLOT="0"
 MYOPTIONS=""
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     build+run:

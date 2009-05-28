@@ -13,7 +13,7 @@ MYOPTIONS="
         mad [[ description = [ support mp3 files with libmad ] ]]
     ) [[ number-selected = at-most-one ]]
 "
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     build+run:

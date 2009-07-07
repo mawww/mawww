@@ -11,13 +11,17 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config
     build+run:
         dev-cpp/libxml++[>=2.6]
-        media-libs/SDL[>=1.2]
+        media-libs/SDL[>=1.2.6][X]
         media-libs/SDL_image[>=1.2]
         media-libs/SDL_mixer[>=1.2]
         media-libs/SDL_ttf[>=2.0]
         media-libs/SDL_gfx[>=2.0.13]
         media-libs/SDL_net[>=1.2.6]
+        net-misc/curl[>=7.0]
+        x11-libs/libX11
 "
 

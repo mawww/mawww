@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # Based on nbsmtp-1.00.ebuild Copyright Gentoo Fundation
 
-DESCRIPTION="Extremely simple MTA to get mail off the system to a relayhost"
+SUMMARY="Extremely simple MTA to get mail off the system to a relayhost"
 DOWNLOADS="http://www.it.uc3m.es/~ferdy/nbsmtp/${PNV}.tar.bz2"
 HOMEPAGE="http://nbsmtp.ferdyx.org"
 

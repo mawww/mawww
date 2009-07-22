@@ -2,7 +2,7 @@
 # Based on ode-0.10.1.ebuild Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-DESCRIPTION="Open Dynamics Engine SDK"
+SUMMARY="Open Dynamics Engine SDK"
 HOMEPAGE="http://ode.org/"
 DOWNLOADS="mirror://sourceforge/opende/${PNV}.tar.bz2"
 

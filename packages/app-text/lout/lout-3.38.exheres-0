@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 
-DESCRIPTION="high-level language for document formatting"
+SUMMARY="high-level language for document formatting"
 HOMEPAGE="http://lout.sourceforge.net/"
 DOWNLOADS="mirror://sourceforge/lout/${PNV}.tar.gz"
 

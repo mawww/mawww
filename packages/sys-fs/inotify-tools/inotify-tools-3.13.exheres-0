@@ -1,0 +1,16 @@
+# Copyright 2009 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="simple interface to inotify"
+HOMEPAGE="http://inotify-tools.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/inotify-tools/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+
+src_install() {
+    default
+    rmdir ${IMAGE}/usr/share/doc/inotify-tools
+}

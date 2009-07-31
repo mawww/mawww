@@ -9,6 +9,7 @@ LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
+    devil
     directfb
     opengl
     (
@@ -20,16 +21,25 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-    expat? ( dev-libs/expat )
-    xerces? ( dev-libs/xerces )
-    libxml2? ( dev-libs/libxml2 )
-    tinyxml? ( dev-libs/tinyxml )
+    build+run:
+        devil? ( media-libs/DevIL )
+        expat? ( dev-libs/expat )
+        libxml? ( dev-libs/libxml2 )
+        tinyxml? ( dev-libs/tinyxml )
+        xerces? ( dev-libs/xerces-c )
 "
 
 WORK=${WORKBASE}/CEGUI-${PV}
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-gtk2 --disable-samples --disable-ogre-render --enable-static )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    expat libxml "xerces xerces-c" tinyxml "directfb directfb-renderer"
+    devil expat libxml "xerces xerces-c" tinyxml "directfb directfb-renderer"
     "opengl opengl-renderer"
 )
+
+src_prepare() {
+    default
+    sed -e 's/ILvoid/void/g' \
+        -i ImageCodecModules/DevILImageCodec/CEGUIDevILImageCodec.cpp || die "Couldn't fix DevIL support"
+}
+

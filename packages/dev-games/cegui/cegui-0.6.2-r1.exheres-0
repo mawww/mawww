@@ -7,7 +7,7 @@ DOWNLOADS="mirror://sourceforge/crayzedsgui/CEGUI-${PV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     devil
     directfb

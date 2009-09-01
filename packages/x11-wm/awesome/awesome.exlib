@@ -43,7 +43,7 @@ build:
     dev-util/pkg-config
     x11-proto/xineramaproto
     doc? (
-        app-doc/asciidoc[<8.3] [[ description = [ currently fails with 8.3 ] ]]
+        app-doc/asciidoc[>=8.4]
         app-text/xmlto
         app-text/docbook-xsl-stylesheets
         app-doc/luadoc )

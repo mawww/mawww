@@ -3,7 +3,7 @@
 
 require cmake
 
-SUMMARY=""
+SUMMARY="free cross-platform alternative to commercial programs like FL Studio®"
 HOMEPAGE="http://lmms.sourceforge.net"
 DOWNLOADS="mirror://sourceforge/lmms/${PV}/${PNV}.tar.bz2"
 

@@ -24,6 +24,8 @@ DEPENDENCIES="
         smpeg? ( media-libs/smpeg )
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( \
     "ogg music-ogg" \
     "smpeg music-mp3" \

@@ -11,5 +11,5 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    media-libs/libmp3splt[>=0.5.4]
+    media-libs/libmp3splt[>=0.5.7a]
 "

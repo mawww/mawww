@@ -16,6 +16,7 @@ DEPENDENCIES="
         ssl? ( dev-libs/openssl )
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
 
 src_install() {

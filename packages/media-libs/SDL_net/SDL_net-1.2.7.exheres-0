@@ -13,4 +13,7 @@ DEPENDENCIES="
         media-libs/SDL[>=1.2.10]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-gui )
+DEFAULT_SRC_CONFIGURE_PARAMS=( 
+    --disable-gui
+    --hates=docdir
+)

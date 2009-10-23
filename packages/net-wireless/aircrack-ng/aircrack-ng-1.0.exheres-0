@@ -15,10 +15,7 @@ DEPENDENCIES="
     build+run:
         sqlite? ( dev-db/sqlite )
     run:
-        || ( 
-            net-wireless/iw
-            net-wireless/wireless_tools  
-        )
+        net-wireless/wireless_tools
 "
 
 RESTRICT=configure

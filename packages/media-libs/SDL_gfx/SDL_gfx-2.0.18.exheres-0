@@ -8,11 +8,11 @@ DOWNLOADS="http://www.ferzkopp.net/Software/SDL_gfx-2.0/${PNV}.tar.gz"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="platform: x86"
+MYOPTIONS="x86_cpu_features: mmx"
 
 DEPENDENCIES="
     build+run:
         media-libs/SDL[>=1.2.10]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "platform:x86 mmx" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "x86_cpu_features:mmx mmx" )

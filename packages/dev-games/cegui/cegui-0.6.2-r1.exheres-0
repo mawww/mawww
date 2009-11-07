@@ -9,12 +9,12 @@ LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
-    devil
+    devil [[ description = [ Image loading support with DevIL ] ]]
     directfb
     opengl
     (
         expat
-        xerces
+        xerces [[ description = [ Use external Xerces-C++ XML parser instead of tiny embedded XML parser ] ]]
         libxml
         tinyxml
     ) [[ number-selected = at-least-one ]]

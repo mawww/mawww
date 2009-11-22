@@ -1,0 +1,24 @@
+# Copyright 2009 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="Computer dream simulator"
+HOMEPAGE="http://electricsheep.org"
+
+SCM_REPOSITORY="https://electricsheep.svn.sourceforge.net/svnroot/electricsheep/"
+SCM_SUBPATH="client"
+require scm-svn
+
+LICENCES="GPL"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        gnome-platform/libglade
+        media/ffmpeg
+        dev-libs/expat
+    build+run:
+        media/mplayer
+"

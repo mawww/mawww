@@ -11,7 +11,7 @@ require scm-svn
 
 LICENCES="GPL"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="

@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Worms clone using free-software mascots"
-HOMEPAGE="http://www.wormux.org"
+HOMEPAGE="http://www.wormux.org/"
 DOWNLOADS="http://download.gna.org/wormux/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="

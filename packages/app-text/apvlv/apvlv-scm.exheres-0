@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="http://apvlv.googlecode.com/svn"
-require toolchain-funcs scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] apvlv
+require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] apvlv
 
 DOWNLOADS=""
 PLATFORMS="~amd64 ~x86"
 
 src_configure() {
-    LD="$(tc-getLD)" default
+    LD="${LD}" default
 }

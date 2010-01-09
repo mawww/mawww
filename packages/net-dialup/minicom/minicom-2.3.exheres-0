@@ -1,7 +1,6 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-
 SUMMARY="Serial communication program"
 HOMEPAGE="http://alioth.debian.org/projects/minicom"
 DOWNLOADS="http://alioth.debian.org/download.php/2332/${PNV}.tar.gz"
@@ -12,8 +11,10 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    sys-libs/ncurses
-    sys-devel/gettext
+    build:
+        sys-devel/gettext
+    build+run:
+        sys-libs/ncurses
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PNV}-getline-conflict-rename.patch")

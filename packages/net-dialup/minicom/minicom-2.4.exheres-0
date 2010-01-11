@@ -19,6 +19,6 @@ DEPENDENCIES="
 
 src_install() {
     default
-    insinto /etc/minicom
+    insinto /etc
     doins doc/minirc.dfl
 }

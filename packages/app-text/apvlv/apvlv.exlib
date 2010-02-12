@@ -1,9 +1,9 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require googlecode [ suffix=tar.gz ]
+
 SUMMARY="a PDF viewer which behaves like vim"
-HOMEPAGE="http://apvlv.googlecode.com"
-DOWNLOADS="http://apvlv.googlecode.com/files/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"

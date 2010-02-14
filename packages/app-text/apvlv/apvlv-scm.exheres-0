@@ -7,6 +7,9 @@ require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11
 DOWNLOADS=""
 PLATFORMS="~amd64 ~x86"
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-configure-variables.patch" )
+
 src_configure() {
     LD="${LD}" default
 }
+

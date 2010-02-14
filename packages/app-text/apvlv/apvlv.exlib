@@ -18,7 +18,4 @@ DEPENDENCIES="
     "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --with-docdir=/usr/share/doc/"${PNV}"
-    --with-sysconfdir="${IMAGE}/etc"
-)
+

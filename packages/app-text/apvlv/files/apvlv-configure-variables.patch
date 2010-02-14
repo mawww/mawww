@@ -1,0 +1,52 @@
+Source: Elias Pipping <pipping@exherbo.org>
+Upstream: http://code.google.com/p/apvlv/issues/detail?id=57
+Reason: Adding options like --with-docdir that break and override --docdir is completely pointless
+--- apvlv-0.0.9.2/configure.ac
++++ apvlv-0.0.9.2/configure.ac
+@@ -43,46 +43,9 @@
+ AC_FUNC_REALLOC
+ AC_CHECK_FUNCS([floor getcwd getpagesize gettimeofday localtime_r memmove memset munmap pow realpath select setlocale sqrt strcasecmp strchr strcspn strdup strerror strncasecmp strrchr strstr strtol])
+ 
+-if test "$prefix" = "NONE"; then
+-  prefix="/usr/local"
+-fi
+-
+ AC_DEFINE_UNQUOTED(PREFIX, ["$prefix"], [The prefix path])
+-
+-sysconfdir="/etc"
+-AC_ARG_WITH(sysconfdir,
+-            [[  --with-sysconfdir=DIR       directory for system configuration of apvlv [/etc]]], 
+-            [ case "$withval" in
+-             yes|no) 
+-             ;;
+-             *) sysconfdir="$withval"
+-             ;;
+-           esac])
+-AC_SUBST(SYSCONFDIR)
+ AC_DEFINE_UNQUOTED(SYSCONFDIR, ["$sysconfdir"], [The system configuration directory])
+-
+-docdir="$prefix/share/doc/$PACKAGE_TARNAME"
+-AC_ARG_WITH(docdir,
+-            [[  --with-docdir=DIR       directory for documentations of apvlv [PREFIX/share/doc/apvlv]]], 
+-            [ case "$withval" in
+-             yes|no) 
+-             ;;
+-             *) docdir="$withval"
+-             ;;
+-           esac])
+-AC_SUBST(DOCDIR)
+ AC_DEFINE_UNQUOTED(DOCDIR, ["$docdir"], [The documents directory])
+-
+-mandir="$prefix/man"
+-AC_ARG_WITH(mandir,
+-            [[  --with-mandir=DIR       directory for man page of apvlv [PREFIX/man]]], 
+-            [ case "$withval" in
+-             yes|no) 
+-             ;;
+-             *) mandir="$withval"
+-             ;;
+-           esac])
+-AC_SUBST(MANDIR)
+ AC_DEFINE_UNQUOTED(MANDIR, ["$mandir"], [The man page directory])
+ 
+ if test x$apvlv_debug = xyes; then 

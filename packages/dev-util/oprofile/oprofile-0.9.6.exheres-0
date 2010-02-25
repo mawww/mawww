@@ -10,6 +10,8 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--hates=docdir" "--with-kernel-support" )
+
 src_install() {
     default
     mv ${IMAGE}/usr/share/doc/oprofile/* ${IMAGE}/usr/share/doc/${PNV}/

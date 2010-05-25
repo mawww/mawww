@@ -3,8 +3,8 @@
 
 
 SUMMARY="simple interface to inotify"
-HOMEPAGE="http://inotify-tools.sourceforge.net"
-DOWNLOADS="mirror://sourceforge/inotify-tools/${PNV}.tar.gz"
+HOMEPAGE="http://wiki.github.com/rvoicilas/inotify-tools/"
+DOWNLOADS="http://github.com/downloads/rvoicilas/${PN}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"

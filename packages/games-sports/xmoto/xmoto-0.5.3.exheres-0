@@ -20,7 +20,8 @@ DEPENDENCIES="
     media-libs/jpeg[>=6]
     media-libs/libpng[>=1.2]
     net-misc/curl[>=3]
-      sys-libs/zlib
-      app-arch/bzip2
+    sys-libs/zlib
+    app-arch/bzip2
+    x11-libs/libxdg-basedir
 "
 

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="This program, given a source file, produce a document with syntax-highlighting"
-HOMEPAGE="http://www.gnu.org/software/src-highlight"
+HOMEPAGE="http://www.gnu.org/software/src-highlite"
 DOWNLOADS="mirror://gnu/src-highlite/${PNV}.tar.gz"
 
 LICENCES="GPL-2"

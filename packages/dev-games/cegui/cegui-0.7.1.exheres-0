@@ -36,10 +36,3 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     devil expat libxml "xerces xerces-c" tinyxml "directfb directfb-renderer"
     "opengl opengl-renderer"
 )
-
-src_prepare() {
-    default
-    sed -e 's/ILvoid/void/g' \
-        -i ImageCodecModules/DevILImageCodec/CEGUIDevILImageCodec.cpp || die "Couldn't fix DevIL support"
-}
-

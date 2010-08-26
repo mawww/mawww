@@ -45,27 +45,27 @@ compile_doc() {
 
 src_install() {
     local bindir libdir docdir mandir
-    bindir=${IMAGE}/usr/bin
-    libdir=${IMAGE}/usr/share/lout
-    docdir=${IMAGE}/usr/share/doc/${PNV}
-    mandir=${IMAGE}/usr/share/man/man1
-    export LOUTLIB=${libdir}
+    bindir="${IMAGE}/usr/bin"
+    libdir="${IMAGE}/usr/share/lout"
+    docdir="${IMAGE}/usr/share/doc/${PNV}"
+    mandir="${IMAGE}/usr/share/man/man1"
+    export LOUTLIB="${libdir}"
 
-    mkdir -p ${bindir} ${docdir} ${mandir}
+    mkdir -p "${bindir}" "${docdir}" "${mandir}"
 
-    emake BINDIR=${bindir} \
-          LOUTLIBDIR=${libdir} \
-          LOUTDOCDIR=${docdir} \
-          MANDIR=${mandir} \
+    emake BINDIR="${bindir}" \
+          LOUTLIBDIR="${libdir}" \
+          LOUTDOCDIR="${docdir}" \
+          MANDIR="${mandir}" \
           install installdoc installman
 
-    ${bindir}/lout -x -s ${IMAGE}/usr/share/lout/include/init || die "lout init failed"
+    "${bindir}/lout" -x -s "${IMAGE}"/usr/share/lout/include/init || die "lout init failed"
 
-    mv ${docdir}/README{,.docs}
+    mv "${docdir}/README"{,.docs}
     dodoc README READMEPDF blurb blurb.short whatsnew
 
     # remove this directory if empty
-    rmdir ${IMAGE}/usr/share/lout/locale
+    rmdir "${IMAGE}/usr/share/lout/locale"
 
     if option doc ; then
         einfo "building postscript documentation (may take a while)"

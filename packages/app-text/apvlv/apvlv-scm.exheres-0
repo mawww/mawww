@@ -8,8 +8,3 @@ DOWNLOADS=""
 PLATFORMS="~amd64 ~x86"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-configure-variables.patch" )
-
-src_configure() {
-    LD="${LD}" default
-}
-

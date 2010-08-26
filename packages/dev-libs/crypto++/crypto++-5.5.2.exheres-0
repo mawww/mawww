@@ -15,12 +15,12 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
-WORK=${WORKBASE}
+WORK="${WORKBASE}"
 RESTRICT=test
 
 src_install() {
-    emake PREFIX=${IMAGE}/usr/ install
-    rm -r ${IMAGE}/usr/bin
+    emake PREFIX="${IMAGE}/usr/" install
+    rm -r "${IMAGE}/usr/bin"
 }
 
 src_compile() {

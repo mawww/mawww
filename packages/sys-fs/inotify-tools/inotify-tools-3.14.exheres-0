@@ -12,5 +12,5 @@ PLATFORMS="~x86"
 
 src_install() {
     default
-    rmdir ${IMAGE}/usr/share/doc/inotify-tools
+    rmdir "${IMAGE}/usr/share/doc/inotify-tools"
 }

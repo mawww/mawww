@@ -32,7 +32,7 @@ DEPENDENCIES="
         upnp? ( net-libs/libupnp[>=3] )
 "
 
-WORK=${WORKBASE}/${MY_PNV}
+WORK="${WORKBASE}/${MY_PNV}"
 
 DEFAULT_SRC_CONFIGURE_PARAMS="--hates=docdir"
 
@@ -43,5 +43,5 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( \
 
 src_install() {
     default
-    find ${IMAGE} -type d -empty -delete
+    find "${IMAGE}" -type d -empty -delete
 }

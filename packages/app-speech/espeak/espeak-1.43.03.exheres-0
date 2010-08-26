@@ -15,20 +15,20 @@ DEPENDENCIES="
         media-libs/portaudio
 "
 
-WORK=${WORKBASE}/${PNV}-source
+WORK="${WORKBASE}/${PNV}-source"
 
 src_prepare() {
     default
-    mv ${WORK}/src/portaudio19.h ${WORK}/src/portaudio.h
+    mv "${WORK}/src/portaudio19.h" ${WORK}/src/portaudio.h
 }
 
 src_compile() {
-    cd ${WORK}/src
+    cd "${WORK}/src"
     emake
 }
 
 src_install() {
-    cd ${WORK}/src
+    cd "${WORK}"/src
     emake DESTDIR="${IMAGE}" install
-    rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
+    rmdir "${IMAGE}/usr/share/espeak-data/"{mbrola,soundicons}
 }

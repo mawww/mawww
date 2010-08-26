@@ -29,7 +29,7 @@ DEPENDENCIES="
         xerces? ( dev-libs/xerces-c )
 "
 
-WORK=${WORKBASE}/CEGUI-${PV}
+WORK="${WORKBASE}/CEGUI-${PV}"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-gtk2 --disable-samples --disable-ogre-render --enable-static )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(

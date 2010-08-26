@@ -1,0 +1,25 @@
+# Copyright 2010 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="lightweight and easily configurable tiling window manager"
+HOMEPAGE="http://plhk.ru/echinus"
+SCM_REPOSITORY="http://github.com/polachok/echinus.git"
+
+require scm-git
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libX11
+        x11-libs/libXft
+        x11-libs/libXrandr
+"
+
+src_prepare() {
+    default
+    sed -i s+/usr/local+/usr+g "${WORK}/config.mk"
+}

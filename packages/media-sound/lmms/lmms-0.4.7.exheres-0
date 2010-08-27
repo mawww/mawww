@@ -19,4 +19,5 @@ DEPENDENCIES="
         media-libs/libsamplerate
         sys-sound/alsa-lib
         sci-libs/fftw
+        x11-libs/libXinerama
 "

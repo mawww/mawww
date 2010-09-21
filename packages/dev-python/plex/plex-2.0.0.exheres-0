@@ -1,0 +1,19 @@
+# Copyright 2010 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.3 ]
+
+MY_PNV=${PNV}dev
+
+SUMMARY="a lexical analysis module for Python"
+HOMEPAGE="http://packages.python.org/plex/"
+DOWNLOADS="http://pypi.python.org/packages/source/p/plex/${MY_PNV}.tar.gz"
+
+LICENCES="As-Is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+WORK=${WORKBASE}/${MY_PNV}
+
+DEPENDENCIES="
+"

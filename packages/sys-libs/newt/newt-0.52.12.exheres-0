@@ -1,0 +1,27 @@
+# Copyright 2010 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Newt is a programming library for color text mode, widget based user interfaces."
+HOMEPAGE="https://fedorahosted.org/newt/"
+DOWNLOADS="https://fedorahosted.org/releases/n/e/newt/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="tcl gpm nls"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/python
+        tcl? ( dev-lang/tcl )
+        gpm? ( sys-libs/gpm )
+        sys-libs/slang
+"
+
+BUGS_TO="frrrwww@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "gpm gpm-support" tcl )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( nls )
+DEFAULT_SRC_COMPILE_PARAMS=( "CPP=${CC} -E" PYTHONVERS=python2.6 )
+DEFAULT_SRC_INSTALL_PARAMS=( "instroot=${IMAGE}" )
+

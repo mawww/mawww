@@ -1,0 +1,17 @@
+# Copyright 2010 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.6 ]
+require googlecode [ suffix=zip ]
+
+SUMMARY="Python ODBC library"
+
+LICENCES="As-Is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-db/unixODBC
+"

@@ -1,21 +1,29 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ]
+require cmake
 
+HOMEPAGE="http://naihe2010.github.com/apvlv/"
+DOWNLOADS="https://github.com/downloads/naihe2010/${PN}/${PNV}-Source.tar.gz"
 SUMMARY="a PDF viewer which behaves like vim"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="debug"
+MYOPTIONS="djvu"
 
 DEPENDENCIES="
     build+run:
         x11-libs/gtk+[>=2.4.0]
         app-text/poppler[>=0.5.4][cairo][glib][gdk]
+        djvu? ( app-text/djvu )
     build:
         dev-util/pkg-config
     "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
+if ! ever is_scm ; then
+    WORK="${WORKBASE}/${PNV}-Source"
+fi
+
+CMAKE_SRC_CONFIGURE_PARAMS=( -DAPVLV_WITH_UMD:BOOL=FALSE )
+CMAKE_SRC_CONFIGURE_OPTION_WITH=( djvu )
 

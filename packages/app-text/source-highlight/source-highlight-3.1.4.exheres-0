@@ -1,6 +1,8 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
+require bash-completion
+
 SUMMARY="This program, given a source file, produce a document with syntax-highlighting"
 HOMEPAGE="http://www.gnu.org/software/src-highlite"
 DOWNLOADS="mirror://gnu/src-highlite/${PNV}.tar.gz"
@@ -14,3 +16,11 @@ DEPENDENCIES="
     build+run:
         dev-libs/boost
 "
+
+src_install() {
+     default
+
+     dobashcompletion "${IMAGE}"/etc/bash_completion.d/source-highlight-bash-completion
+     edo rm "${IMAGE}"/etc/bash_completion.d/source-highlight-bash-completion
+     edo rmdir "${IMAGE}"/etc/bash_completion.d/ "${IMAGE}"/etc/
+}

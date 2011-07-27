@@ -1,10 +1,8 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="http://apvlv.googlecode.com/svn"
-require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ] apvlv
+SCM_REPOSITORY="git://github.com/naihe2010/apvlv.git"
+require scm-git apvlv
 
 DOWNLOADS=""
 PLATFORMS="~amd64 ~x86"
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-configure-variables.patch" )

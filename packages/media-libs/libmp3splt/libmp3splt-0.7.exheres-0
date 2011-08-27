@@ -17,15 +17,17 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc pcre [[ description = [ support settings tags from input filenames ] ]]"
 
 DEPENDENCIES="
-    doc? (
-        app-doc/doxygen
-        app-doc/graphviz
-    )
-    pcre? ( dev-libs/pcre )
-    media-libs/libmad
-    media-libs/libid3tag
-    media-libs/libvorbis 
-    media-libs/libogg
+    build:
+        doc? (
+            app-doc/doxygen
+            app-doc/graphviz
+        )
+    build+run:
+        pcre? ( dev-libs/pcre )
+        media-libs/libmad
+        media-libs/libid3tag
+        media-libs/libvorbis 
+        media-libs/libogg
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(

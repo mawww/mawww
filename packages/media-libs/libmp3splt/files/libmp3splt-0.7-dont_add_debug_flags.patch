@@ -1,0 +1,16 @@
+Reason: let user CFLAGS take over
+Source: Daniel Mierswa <impulze@impulze.org>
+Upstream: no
+
+diff -Naur libmp3splt-0.7.orig/configure.ac libmp3splt-0.7/configure.ac
+--- libmp3splt-0.7.orig/configure.ac	2011-07-14 12:45:21.000000000 +0200
++++ libmp3splt-0.7/configure.ac	2011-08-27 23:20:43.000000000 +0200
+@@ -39,7 +39,7 @@
+ AC_CONFIG_HEADERS([config.h])
+ AM_MAINTAINER_MODE([enable])
+ 
+-DEBUG_FLAGS="-g"
++#DEBUG_FLAGS="-g"
+ #OPTIMISE_FLAGS="-O2"
+ #WARNING_FLAGS="-Wall -Wextra -Wswitch-enum -Wswitch-default -Wfloat-equal -Wbad-function-cast -Wcast-qual -Wunreachable-code"
+ WARNING_FLAGS="-Wall"

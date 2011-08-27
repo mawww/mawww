@@ -6,10 +6,9 @@ AT_M4DIR=( m4 )
 AT_NO_RECURSIVE=yes
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require sourceforge [ project=mp3splt suffix=tar.gz ]
 
 SUMMARY="mp3 and ogg splitter library"
-HOMEPAGE="http://mp3splt.sourceforge.net"
-DOWNLOADS="mirror://sourceforge/mp3splt/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"

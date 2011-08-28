@@ -1,0 +1,39 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Copyright 2011 Daniel Mierswa <impulze@impulze.org>
+# Distributed under the terms of the GNU General Public License v2
+
+AT_M4DIR=( m4 )
+AT_NO_RECURSIVE=yes
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require sourceforge [ project=mp3splt suffix=tar.gz ]
+
+SUMMARY="mp3 and ogg splitter library"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc pcre [[ description = [ support settings tags from input filenames ] ]]"
+
+DEPENDENCIES="
+    build:
+        doc? (
+            app-doc/doxygen
+            app-doc/graphviz
+        )
+    build+run:
+        pcre? ( dev-libs/pcre )
+        media-libs/libmad
+        media-libs/libid3tag
+        media-libs/libvorbis 
+        media-libs/libogg
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/libmp3splt-0.7-dont_add_debug_flags.patch
+    "${FILES}"/libmp3splt-0.7-make_doc_generation_optional.patch
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc doxygen' pcre )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-cutter' )
+

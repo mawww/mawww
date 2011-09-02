@@ -8,7 +8,7 @@ DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.bz2"
 LICENCES="LGPL"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="swig"
+MYOPTIONS="perl python ruby swig tcl"
 
 DEPENDENCIES="
     build+run:
@@ -16,4 +16,4 @@ DEPENDENCIES="
         swig? ( dev-lang/swig )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( swig )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( perl python ruby swig tcl )

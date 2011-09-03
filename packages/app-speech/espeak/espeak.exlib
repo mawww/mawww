@@ -1,0 +1,47 @@
+# Copyright 2009 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="open source software speech synthetizer"
+HOMEPAGE="http://espeak.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}-source.zip"
+
+LICENCES="GPL"
+SLOT="0"
+
+MYOPTIONS="portaudio pulseaudio
+    ( portaudio pulseaudio ) [[ number-selected = at-most-one ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        portaudio? ( media-libs/portaudio )
+        pulseaudio? ( media-sound/pulseaudio )
+"
+
+WORK="${WORKBASE}/${PNV}-source"
+
+pkg_setup() {
+    AUDIO=
+    if option pulseaudio; then
+        AUDIO=pulseaudio
+    elif option portaudio; then
+        AUDIO=portaudio
+    fi
+}
+
+src_prepare() {
+    default
+    mv "${WORK}"/src/portaudio19.h "${WORK}"/src/portaudio.h
+}
+
+src_compile() {
+    cd "${WORK}"/src
+    emake AUDIO="${AUDIO}"
+}
+
+src_install() {
+    cd "${WORK}"/src
+    emake DESTDIR="${IMAGE}" AUDIO="${AUDIO}" install
+    rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
+}

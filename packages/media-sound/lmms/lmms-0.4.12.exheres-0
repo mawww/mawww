@@ -1,11 +1,9 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake
+require cmake sourceforge
 
 SUMMARY="free cross-platform alternative to commercial programs like FL Studio®"
-HOMEPAGE="http://lmms.sourceforge.net"
-DOWNLOADS="mirror://sourceforge/lmms/${PV}/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"

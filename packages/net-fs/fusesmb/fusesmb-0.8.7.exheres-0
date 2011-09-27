@@ -7,7 +7,7 @@ DOWNLOADS="http://www.ricardis.tudelft.nl/~vincent/fusesmb/download/${PNV}.tar.g
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="

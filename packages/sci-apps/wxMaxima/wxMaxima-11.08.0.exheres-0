@@ -1,0 +1,28 @@
+# Copyright 2011 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.gz project=wxmaxima ]
+
+SUMMARY="document based interface for the computer algebra system Maxima"
+HOMEPAGE=""
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+        x11-libs/wxGTK
+        sci-apps/maxima
+        sys-apps/gawk
+"
+
+BUGS_TO=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
+
+

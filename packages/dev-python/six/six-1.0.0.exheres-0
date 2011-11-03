@@ -1,0 +1,16 @@
+# Copyright 2010 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.3 ]
+
+SUMMARY="Python 2 and 3 compatibility utilities"
+HOMEPAGE="http://packages.python.org/${PN}/"
+DOWNLOADS="http://pypi.python.org/packages/source/s/${PN}/${PNV}.tar.gz"
+
+LICENCES="As-Is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+"

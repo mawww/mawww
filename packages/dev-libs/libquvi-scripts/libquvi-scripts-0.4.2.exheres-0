@@ -1,0 +1,23 @@
+# Copyright 2011 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.xz project=quvi ]
+
+SUMMARY="scripts used by libquvi to parse media stream URLs"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    doc
+    nsfw-content [[ description = [ Enable support for not-safe-for-work content ] ]]
+"
+
+DEPENDENCIES="
+    build:
+    build+run:
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-fixme --without-tests )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "nsfw-content nsfw" "doc manual")
+

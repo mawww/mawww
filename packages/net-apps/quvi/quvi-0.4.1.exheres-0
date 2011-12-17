@@ -1,0 +1,20 @@
+# Copyright 2011 Leon Baum <leonbaum2@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.xz ]
+
+SUMMARY="A command line tool for libquvi"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/libquvi[>=0.4.0]
+        dev-lang/lua[>=5.1]
+        net-misc/curl[>=7.18.2]
+"
+

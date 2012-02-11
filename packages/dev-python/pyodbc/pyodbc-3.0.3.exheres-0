@@ -6,7 +6,7 @@ require googlecode [ suffix=zip ]
 
 SUMMARY="Python ODBC library"
 
-LICENCES="As-Is"
+LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""

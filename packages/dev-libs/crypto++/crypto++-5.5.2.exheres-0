@@ -18,6 +18,11 @@ MYOPTIONS=""
 WORK="${WORKBASE}"
 RESTRICT=test
 
+src_prepare() {
+    edo sed -e "s:/lib:/${LIBDIR}:" \
+            -i GNUmakefile
+}
+
 src_install() {
     emake PREFIX="${IMAGE}/usr/" install
     rm -r "${IMAGE}/usr/bin"

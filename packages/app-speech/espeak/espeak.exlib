@@ -37,11 +37,11 @@ src_prepare() {
 
 src_compile() {
     cd "${WORK}"/src
-    emake AUDIO="${AUDIO}"
+    emake LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}"
 }
 
 src_install() {
     cd "${WORK}"/src
-    emake DESTDIR="${IMAGE}" AUDIO="${AUDIO}" install
+    emake DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}" install
     rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
 }

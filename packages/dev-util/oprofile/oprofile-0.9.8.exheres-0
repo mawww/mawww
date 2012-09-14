@@ -1,0 +1,23 @@
+# Copyright 2009 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="System-wide profiler for linux"
+HOMEPAGE="http://oprofile.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/oprofile/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-libs/libxslt
+    build+run:
+        dev-libs/popt
+        user/oprofile
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-gui
+)

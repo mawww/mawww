@@ -1,0 +1,30 @@
+# Copyright 2013 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [[ suffix=tar.gz ]]
+
+SUMMARY="a program to fetch mail and deliver it in various ways depending on a
+user-supplied ruleset"
+
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="pcre"
+
+DEPENDENCIES="
+    build+run:
+        dev-db/tdb
+        dev-libs/openssl
+        pcre? ( dev-libs/pcre )
+"
+
+src_compile()
+{
+    emake PREFIX=/usr $(option pcre && echo PCRE=1)
+}
+
+src_install()
+{
+    emake -j1 DESTDIR="${IMAGE}" PREFIX=/usr install
+    emagicdocs
+}

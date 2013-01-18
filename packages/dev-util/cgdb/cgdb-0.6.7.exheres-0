@@ -1,10 +1,9 @@
 # Copyright 2010 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [[ suffix=tar.gz ]]
-
 SUMMARY="the curses debugger"
 
+DOWNLOADS="http://cgdb.me/files/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
@@ -14,4 +13,6 @@ DEPENDENCIES="
     build+run:
         sys-libs/readline
         sys-libs/ncurses
+    run:
+        sys-devel/gdb
 "

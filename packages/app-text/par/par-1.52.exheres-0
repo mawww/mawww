@@ -1,0 +1,31 @@
+# Copyright 2013 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="paragraph reformatter"
+DESCRIPTION="
+par is a paragraph reformatter, vaguely similar to fmt, but better.
+"
+
+SRCNAME=${PN^}${PV/./}
+
+HOMEPAGE="http://www.nicemice.net/${PN}/"
+DOWNLOADS="http://www.nicemice.net/${PN}/${SRCNAME}.tar.gz"
+
+LICENCES="As-Is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+WORK="${WORKBASE}/${SRCNAME}"
+
+DEPENDENCIES=""
+
+src_prepare() {
+    edo mv protoMakefile Makefile
+}
+
+src_install() {
+    dobin par
+    doman par.1
+    dodoc par.doc releasenotes
+}

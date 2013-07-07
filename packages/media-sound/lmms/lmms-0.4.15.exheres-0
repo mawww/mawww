@@ -1,7 +1,7 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake sourceforge
+require cmake sourceforge [[ suffix=tar.bz2 ]]
 
 SUMMARY="free cross-platform alternative to commercial programs like FL Studio®"
 

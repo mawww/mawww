@@ -1,0 +1,20 @@
+# Copyright 2013 Thomas Witt
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=davidhalter ] distutils
+
+SUMMARY="Awesome autocompletion library for python"
+HOMEPAGE+=" http://jedi.jedidjah.ch/"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+"
+
+BUGS_TO="pyromaniac@thwitt.de"
+

@@ -11,10 +11,5 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build:
-    build+run:
-"
-
 BUGS_TO="pyromaniac@thwitt.de"
 

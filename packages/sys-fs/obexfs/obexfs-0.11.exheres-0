@@ -5,7 +5,7 @@ SUMMARY="OBEX fuse file system"
 HOMEPAGE="http://dev.zuckschwerdt.org/openobex/wiki/ObexFs"
 DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.gz"
 
-LICENCES="LGPL"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""

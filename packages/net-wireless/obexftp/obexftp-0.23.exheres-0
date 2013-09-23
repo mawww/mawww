@@ -5,7 +5,7 @@ SUMMARY="OBEX file transfert library and tools"
 HOMEPAGE="http://dev.zuckschwerdt.org/openobex/wiki/ObexFtp"
 DOWNLOADS="mirror://sourceforge/openobex/${PNV}.tar.bz2"
 
-LICENCES="LGPL"
+LICENCES="GPL-2 LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="perl python ruby swig tcl"

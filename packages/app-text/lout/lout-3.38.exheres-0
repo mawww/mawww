@@ -2,10 +2,9 @@
 # Based on lout-3.31.ebuild which is Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-
-SUMMARY="high-level language for document formatting"
-HOMEPAGE="http://lout.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/lout/${PNV}.tar.gz"
+SUMMARY="High-level language for document formatting"
+HOMEPAGE="http://savannah.nongnu.org/projects/${PN}"
+DOWNLOADS="mirror://savannah/${PN}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"

@@ -8,7 +8,7 @@ DOWNLOADS="mirror://sourceforge/opende/${PNV}.tar.bz2"
 
 LICENCES="|| ( LGPL-2.1 BSD-3 )"
 SLOT="0"
-PLATFORMS="~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug doc double-precision examples gyroscopic
     double-precision [[ description = [ More precise calculations at the expense of speed ] ]]"
 

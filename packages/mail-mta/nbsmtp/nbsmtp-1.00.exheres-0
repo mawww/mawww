@@ -9,7 +9,7 @@ HOMEPAGE="http://nbsmtp.ferdyx.org"
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="ssl ipv6 debug"
-PLATFORMS="alpha ~amd64 hppa ppc sparc x86"
+PLATFORMS="~amd64 x86"
 
 DEPENDENCIES="
     build+run:

@@ -1,0 +1,27 @@
+# Copyright 2014 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=mawww ]
+
+SUMMARY="Mawww's experiment for a better code editor"
+
+LICENCES="public-domain"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/boost
+        sys-libs/ncurses
+"
+
+src_compile() {
+    cd ${WORK}/src
+    emake
+}
+
+src_install() {
+    cd ${WORK}/src
+    emake DESTDIR="${IMAGE}" PREFIX=/usr install
+}

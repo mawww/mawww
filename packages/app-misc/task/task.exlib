@@ -1,15 +1,20 @@
 # Copyright 2013 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+if ever is_scm ; then
+    SCM_REPOSITORY="https://git.tasktools.org/scm/tm/${PN}.git"
+    require scm-git
+else
+    DOWNLOADS="http://taskwarrior.org/download/${PNV}.tar.gz"
+fi
+
 require cmake bash-completion zsh-completion
 
 SUMMARY="Taskwarrior is a command-line todo list manager."
-HOMEPAGE="http://www.taskwarrior.org"
-DOWNLOADS="http://www.taskwarrior.org/download/${PNV}.tar.gz"
+HOMEPAGE="http://taskwarrior.org"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="

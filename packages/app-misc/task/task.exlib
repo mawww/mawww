@@ -1,0 +1,24 @@
+# Copyright 2013 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake bash-completion zsh-completion
+
+SUMMARY="Taskwarrior is a command-line todo list manager."
+HOMEPAGE="http://www.taskwarrior.org"
+DOWNLOADS="http://www.taskwarrior.org/download/${PNV}.tar.gz"
+
+LICENCES="MIT"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        sys-apps/util-linux
+"
+
+src_install() {
+    cmake_src_install
+    dozshcompletion scripts/zsh/_task
+    dobashcompletion scripts/bash/task.sh
+}
+

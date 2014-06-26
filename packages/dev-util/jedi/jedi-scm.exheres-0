@@ -3,5 +3,5 @@
 
 require jedi
 
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 

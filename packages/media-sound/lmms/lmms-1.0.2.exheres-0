@@ -1,7 +1,7 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake sourceforge [[ suffix=tar.bz2 ]]
+require cmake sourceforge [[ pnv=${PNV}-src suffix=tar.bz2 ]]
 
 SUMMARY="free cross-platform alternative to commercial programs like FL Studio®"
 
@@ -12,10 +12,16 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        x11-libs/qt:4
+        media-libs/libogg
         media-libs/libsndfile
-        media-libs/libsamplerate
+        media-libs/libsamplerate[>=0.1.7]
+        media-libs/SDL
+        media-sound/fluidsynth
         sys-sound/alsa-lib
         sci-libs/fftw
+        x11-libs/fltk
         x11-libs/libXinerama
+        x11-libs/qt:4[>=4.4]
 "
+
+CMAKE_SRC_CONFIGURE_PARAMS="-DCMAKE_INSTALL_LIBDIR=${LIBDIR}"

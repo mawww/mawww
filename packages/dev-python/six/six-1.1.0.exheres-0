@@ -1,0 +1,15 @@
+# Copyright 2010 Maxime Coste
+# Copyright 2012 Ingmar Vanhassel
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.3 ] pypi
+
+SUMMARY="Python 2 and 3 compatibility utilities"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+UPSTREAM_DOCUMENTATION="http://packages.python.org/six/"
+

@@ -1,6 +1,8 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
+export_exlib_phases pkg_setup src_prepare src_compile src_install
+
 
 SUMMARY="open source software speech synthetizer"
 HOMEPAGE="http://espeak.sourceforge.net"
@@ -21,7 +23,7 @@ DEPENDENCIES="
 
 WORK="${WORKBASE}/${PNV}-source"
 
-pkg_setup() {
+espeak_pkg_setup() {
     AUDIO=
     if option pulseaudio; then
         AUDIO=pulseaudio
@@ -30,17 +32,17 @@ pkg_setup() {
     fi
 }
 
-src_prepare() {
+espeak_src_prepare() {
     default
     mv "${WORK}"/src/portaudio19.h "${WORK}"/src/portaudio.h
 }
 
-src_compile() {
+espeak_src_compile() {
     cd "${WORK}"/src
     emake LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}"
 }
 
-src_install() {
+espeak_src_install() {
     cd "${WORK}"/src
     emake DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}" install
     rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}

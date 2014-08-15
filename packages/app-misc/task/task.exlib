@@ -10,6 +10,8 @@ fi
 
 require cmake bash-completion zsh-completion
 
+export_exlib_phases src_install
+
 SUMMARY="Taskwarrior is a command-line todo list manager."
 HOMEPAGE="http://taskwarrior.org"
 
@@ -22,7 +24,7 @@ DEPENDENCIES="
         sys-apps/util-linux
 "
 
-src_install() {
+task_src_install() {
     cmake_src_install
     dozshcompletion scripts/zsh/_task
     dobashcompletion scripts/bash/task.sh

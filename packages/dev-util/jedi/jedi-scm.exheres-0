@@ -1,0 +1,7 @@
+# Copyright 2013 Thomas Witt
+# Distributed under the terms of the GNU General Public License v2
+
+require jedi
+
+PLATFORMS="~amd64 ~arm"
+

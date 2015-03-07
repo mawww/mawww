@@ -1,0 +1,18 @@
+Description: Use even more "wrong" regex in unit test
+ "{notclosed" is actually a valid perl regular expression (unmatched
+ {}, is silently treated as literal string)
+Author: Dmitrijs Ledkovs <xnox@ubuntu.com>
+Bug-Debian: http://bugs.debian.org/724089
+Upstream bug: https://savannah.gnu.org/bugs/?41786
+
+--- source-highlight-3.1.7.orig/lib/tests/test_regexranges_main.cpp
++++ source-highlight-3.1.7/lib/tests/test_regexranges_main.cpp
+@@ -48,7 +48,7 @@ int main() {
+     check_range_regex("simple regex");
+     check_range_regex("[[:alpha:]]+");
+     // test with a wrong regular expression
+-    check_range_regex("{notclosed", false);
++    check_range_regex("[", false);
+
+     // reset regular expressions
+     ranges.clear();

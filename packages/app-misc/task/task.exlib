@@ -17,12 +17,15 @@ HOMEPAGE="http://taskwarrior.org"
 
 LICENCES="MIT"
 SLOT="0"
-MYOPTIONS=""
+MYOPTIONS="gnutls"
 
 DEPENDENCIES="
     build+run:
         sys-apps/util-linux
+        gnutls? ( dev-libs/gnutls )
 "
+
+CMAKE_SRC_CONFIGURE_OPTION_USES=( 'gnutls GNUTLS' )
 
 task_src_install() {
     cmake_src_install

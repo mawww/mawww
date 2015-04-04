@@ -1,7 +1,7 @@
 # Copyright 2009 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake sourceforge [[ pnv=${PNV}-src suffix=tar.bz2 ]]
+require cmake github [[ user=LMMS tag=v${PV} ]]
 
 SUMMARY="free cross-platform alternative to commercial programs like FL Studio®"
 
@@ -15,6 +15,7 @@ DEPENDENCIES="
         media-libs/libogg
         media-libs/libsndfile
         media-libs/libsamplerate[>=0.1.7]
+        media-libs/libvorbis
         media-libs/SDL
         media-sound/fluidsynth
         sys-sound/alsa-lib

@@ -14,6 +14,13 @@ MYOPTIONS=""
 
 DEPENDENCIES=""
 
+src_configure() {
+    # yes, it really uses $CC as C++ compiler...
+    export CC="${CXX}"
+
+    default
+}
+
 src_install() {
     dobin html2text
     doman html2text.1.gz

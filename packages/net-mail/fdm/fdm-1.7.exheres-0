@@ -20,11 +20,11 @@ DEPENDENCIES="
 
 src_compile()
 {
-    emake PREFIX=/usr $(option pcre && echo PCRE=1)
+    emake PREFIX="/usr/$(exhost --target)" $(option pcre && echo PCRE=1)
 }
 
 src_install()
 {
-    emake -j1 DESTDIR="${IMAGE}" PREFIX=/usr install
+    emake -j1 DESTDIR="${IMAGE}" PREFIX="/usr/$(exhost --target)" install
     emagicdocs
 }

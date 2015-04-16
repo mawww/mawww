@@ -1,0 +1,21 @@
+# Copyright 2015 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_rct_REPOSITORY="https://github.com/Andersbakken/rct"
+
+SCM_SECONDARY_REPOSITORIES="rct"
+SCM_EXTERNAL_REFS="src/rct:rct"
+
+require github [ user=Andersbakken ] cmake
+
+SUMMARY="A c/c++ client/server indexer for c/c++/objc[++] with integration for Emacs based on clang."
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/clang
+"

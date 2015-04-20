@@ -26,6 +26,11 @@ DEPENDENCIES="
 "
 
 CMAKE_SRC_CONFIGURE_OPTION_USES=( 'gnutls GNUTLS' )
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DTASK_DOCDIR=/usr/share
+    -DTASK_MAN1DIR=/usr/share/man/man1
+    -DTASK_MAN5DIR=/usr/share/man/man5
+)
 
 task_src_install() {
     cmake_src_install

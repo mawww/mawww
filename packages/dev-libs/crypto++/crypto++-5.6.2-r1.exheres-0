@@ -23,8 +23,7 @@ WORK="${WORKBASE}"
 RESTRICT=test
 
 src_prepare() {
-    edo sed -e "s:/lib:/${LIBDIR}:" \
-            -e "s:lib64cryptopp:libcryptopp:" \
+    edo sed -e "s:ranlib:${RANLIB}:" \
             -i GNUmakefile
 }
 
@@ -37,11 +36,11 @@ src_compile() {
 }
 
 src_install() {
-    emake PREFIX="${IMAGE}/usr/" install
+    emake PREFIX="${IMAGE}/usr/$(exhost --target)" install
     rm -r "${IMAGE}/usr/bin"
 
     # create the libcrypto++.so.9 needed by megasync
-    edo cd "${IMAGE}/usr/${LIBDIR}"
+    edo cd "${IMAGE}/usr/$(exhost --target)/lib"
     edo ln -s libcryptopp.so libcrypto++.so.9
 }
 

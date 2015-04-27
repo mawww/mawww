@@ -21,7 +21,7 @@ DEPENDENCIES="
         pulseaudio? ( media-sound/pulseaudio )
 "
 
-WORK="${WORKBASE}/${PNV}-source"
+WORK="${WORKBASE}/${PNV}-source/src"
 
 espeak_pkg_setup() {
     AUDIO=
@@ -34,16 +34,14 @@ espeak_pkg_setup() {
 
 espeak_src_prepare() {
     default
-    mv "${WORK}"/src/portaudio19.h "${WORK}"/src/portaudio.h
+    mv portaudio19.h portaudio.h
 }
 
 espeak_src_compile() {
-    cd "${WORK}"/src
     emake LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}"
 }
 
 espeak_src_install() {
-    cd "${WORK}"/src
     emake DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}" install
     rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
 }

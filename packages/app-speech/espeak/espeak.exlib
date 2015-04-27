@@ -34,7 +34,7 @@ espeak_pkg_setup() {
 
 espeak_src_prepare() {
     default
-    mv portaudio19.h portaudio.h
+    edo mv portaudio19.h portaudio.h
 }
 
 espeak_src_compile() {
@@ -43,5 +43,5 @@ espeak_src_compile() {
 
 espeak_src_install() {
     emake DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}" install
-    rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
+    edo rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
 }

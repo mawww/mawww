@@ -38,10 +38,10 @@ espeak_src_prepare() {
 }
 
 espeak_src_compile() {
-    emake LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}"
+    emake PREFIX="/usr/$(exhost --target)" AUDIO="${AUDIO}"
 }
 
 espeak_src_install() {
-    emake DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR}" AUDIO="${AUDIO}" install
+    emake DESTDIR="${IMAGE}" PREFIX="/usr/$(exhost --target)" AUDIO="${AUDIO}" install
     edo rmdir "${IMAGE}"/usr/share/espeak-data/{mbrola,soundicons}
 }

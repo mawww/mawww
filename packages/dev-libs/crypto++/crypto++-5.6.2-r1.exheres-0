@@ -9,7 +9,7 @@ DESCRIPTION="
 Crypto++ is a C++ class library containing various cryptographic schemes
 "
 HOMEPAGE="http://www.cryptopp.com"
-DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp${PV//./}.zip"
+DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp$(ever delete_all ${PV}).zip"
 
 LICENCES="
     cryptopp
@@ -37,7 +37,7 @@ src_compile() {
 
 src_install() {
     emake PREFIX="${IMAGE}/usr/$(exhost --target)" install
-    rm -r "${IMAGE}/usr/bin"
+    edo rm -r "${IMAGE}/usr/$(exhost --target)/bin"
 
     # create the libcrypto++.so.9 needed by megasync
     edo cd "${IMAGE}/usr/$(exhost --target)/lib"

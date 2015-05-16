@@ -12,9 +12,21 @@ PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
     build:
         dev-libs/libxslt
+        sys-kernel/linux-headers:*
     build+run:
         dev-libs/popt
         sys-devel/binutils[>=2.25-r1] [[ note = [ >=2.25-r1 to have the correct libbfd.so ] ]]
         user/oprofile
 "
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --prefix=/usr
+    --exec-prefix=/usr/$(exhost --target)
+    --includedir=/usr/$(exhost --target)/include
+)
+
+src_prepare() {
+    # not compatible with cross, idiotic unit test to begin with. stub.
+    echo 'int main() { return 0; }' > libutil/tests/file_tests.c || die
+}
 

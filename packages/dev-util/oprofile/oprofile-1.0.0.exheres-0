@@ -30,3 +30,10 @@ src_prepare() {
     echo 'int main() { return 0; }' > libutil/tests/file_tests.c || die
 }
 
+src_configure() {
+    # Without this compiling with gcc 5.1 results in:
+    # Error: operf sample data does not have expected header data
+    export CXXFLAGS="${CXXFLAGS} -fno-merge-constants"
+    default
+}
+

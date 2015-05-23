@@ -18,3 +18,9 @@ DEPENDENCIES="
     run:
         sys-devel/gdb
 "
+
+src_prepare()
+{
+    edo ./autogen.sh
+    default
+}

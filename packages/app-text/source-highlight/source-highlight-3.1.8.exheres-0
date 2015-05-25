@@ -16,7 +16,6 @@ DEPENDENCIES="
     build+run:
         dev-libs/boost
 "
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix-testcase-boost1.54.patch )
 
 src_test() {
     emake -j1 check
@@ -29,3 +28,4 @@ src_install() {
      edo rm "${IMAGE}"/etc/bash_completion.d/source-highlight
      edo rmdir "${IMAGE}"/etc/bash_completion.d/ "${IMAGE}"/etc/
 }
+

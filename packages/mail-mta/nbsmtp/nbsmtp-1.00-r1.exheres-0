@@ -8,19 +8,24 @@ HOMEPAGE="http://nbsmtp.ferdyx.org"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="ssl ipv6 debug"
+MYOPTIONS="
+    debug
+    ipv6
+    ssl
+    ssl? ( ( providers: libressl openssl ) [[ number-selected = exactly-one ]] )"
 PLATFORMS="~amd64 x86"
 
 DEPENDENCIES="
     build+run:
-        ssl? ( dev-libs/openssl )
+        providers:libressl? ( dev-libs/libressl:= )
+        providers:openssl? ( dev-libs/openssl )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=datarootdir --hates=docdir )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
 
 src_install() {
-    dodir /usr/bin
+    dodir /usr/$(exhost --target)/bin
     dobin nbsmtp
     dobin scripts/nbqueue
     doman nbsmtprc.5 nbsmtp.8

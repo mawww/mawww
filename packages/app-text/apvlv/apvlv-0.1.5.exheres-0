@@ -1,0 +1,13 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require apvlv
+
+PLATFORMS="~amd64 ~x86"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PNV}-Changed-comparions-to-remove-compiler-errors.-In-one.patch
+    "${FILES}"/${PNV}-Fix-gcc6-compile-error.patch
+    "${FILES}"/${PNV}-Fix-build-with-GCC-version-6.patch
+)
+

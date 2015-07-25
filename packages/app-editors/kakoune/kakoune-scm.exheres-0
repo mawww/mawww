@@ -23,5 +23,5 @@ src_compile() {
 
 src_install() {
     cd ${WORK}/src
-    emake DESTDIR="${IMAGE}" PREFIX=/usr install
+    emake DESTDIR="${IMAGE}" PREFIX=/usr bindir="${IMAGE}"/usr/$(exhost --target)/bin install
 }

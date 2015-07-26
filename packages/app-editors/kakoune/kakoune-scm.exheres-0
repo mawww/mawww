@@ -16,6 +16,10 @@ DEPENDENCIES="
         sys-libs/ncurses
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/fix-sharedir-location.patch
+)
+
 src_compile() {
     cd ${WORK}/src
     emake

@@ -7,7 +7,7 @@ SUMMARY="Mawww's experiment for a better code editor"
 
 LICENCES="public-domain"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~armv7"
 MYOPTIONS=""
 
 DEPENDENCIES="

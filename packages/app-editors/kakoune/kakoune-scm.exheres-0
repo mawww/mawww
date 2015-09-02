@@ -16,16 +16,11 @@ DEPENDENCIES="
         sys-libs/ncurses
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/fix-sharedir-location.patch
+WORK=${WORK}/src
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    DESTDIR="${IMAGE}"
+    PREFIX=/usr
+    bindir="${IMAGE}"/usr/$(exhost --target)/bin
 )
 
-src_compile() {
-    cd ${WORK}/src
-    emake
-}
-
-src_install() {
-    cd ${WORK}/src
-    emake DESTDIR="${IMAGE}" PREFIX=/usr bindir="${IMAGE}"/usr/$(exhost --target)/bin install
-}

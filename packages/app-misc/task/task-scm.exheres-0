@@ -1,7 +1,0 @@
-# Copyright 2013 Maxime Coste <frrrwww@gmail.com>
-# Distributed under the terms of the GNU General Public License v2
-
-require task
-
-PLATFORMS="~amd64"
-

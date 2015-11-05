@@ -1,26 +1,50 @@
 # Copyright 2014 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=mawww ]
+require toolchain-funcs github [ user=mawww ]
 
 SUMMARY="Mawww's experiment for a better code editor"
 
 LICENCES="public-domain"
 SLOT="0"
 PLATFORMS="~amd64 ~armv7"
-MYOPTIONS=""
+MYOPTIONS="debug"
 
 DEPENDENCIES="
     build+run:
-        dev-libs/boost
-        sys-libs/ncurses
+        dev-libs/boost[>=1.50]
+        sys-libs/ncurses[>=5.3]
 "
 
 WORK=${WORK}/src
 
-DEFAULT_SRC_INSTALL_PARAMS=(
-    DESTDIR="${IMAGE}"
-    PREFIX=/usr
-    bindir="${IMAGE}"/usr/$(exhost --target)/bin
-)
+src_compile() {
+    emake   \
+        $(optionq debug || echo debug=no)   \
+        $(libc-is-musl && echo pedantic=no) \
+        NCURSES_INCLUDE=/usr/$(exhost --target)/include/ncursesw
+}
+
+src_test() {
+    esandbox allow_path /tmp
+    esandbox allow_net unix:/tmp/kakoune/paludisbuild
+    # kakoune uses xmessage on crashing, this removes the dependency
+    edo printf '#!/bin/sh\ntrue\n' > xmessage
+    edo chmod +x xmessage
+    PATH="${WORK}":"${PATH}" default
+    esandbox disallow_net unix:/tmp/kakoune/paludisbuild
+    esandbox disallow_path /tmp
+}
+
+src_install() {
+    emake   \
+        $(optionq debug || echo debug=no)   \
+        $(libc-is-musl && echo pedantic=no) \
+        NCURSES_INCLUDE=/usr/$(exhost --target)/include/ncursesw    \
+        DESTDIR="${IMAGE}"  \
+        PREFIX=/usr         \
+        bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
+        docdir="${IMAGE}"/usr/share/doc/${PNV}  \
+        install
+}
 

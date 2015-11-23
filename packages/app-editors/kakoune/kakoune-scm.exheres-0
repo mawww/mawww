@@ -22,7 +22,7 @@ src_compile() {
     emake   \
         $(optionq debug || echo debug=no)   \
         $(libc-is-musl && echo pedantic=no) \
-        NCURSES_INCLUDE=/usr/$(exhost --target)/include/ncursesw
+        NCURSESW_INCLUDE=/usr/$(exhost --target)/include/ncursesw
 }
 
 src_test() {

@@ -9,13 +9,17 @@ user-supplied ruleset"
 LICENCES="BSD"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="pcre"
+MYOPTIONS="
+    pcre
+    ( providers: libressl openssl ) [[ number-selected = exactly-one ]]
+"
 
 DEPENDENCIES="
     build+run:
         dev-db/tdb
-        dev-libs/openssl
         pcre? ( dev-libs/pcre )
+        providers:libressl? ( dev-libs/libressl:= )
+        providers:openssl? ( dev-libs/openssl )
 "
 
 src_compile()

@@ -9,7 +9,7 @@ SUMMARY="a lexical analysis module for Python"
 HOMEPAGE="http://packages.python.org/plex/"
 DOWNLOADS="http://pypi.python.org/packages/source/p/plex/${MY_PNV}.tar.gz"
 
-LICENCES="As-Is"
+LICENCES="as-is"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""

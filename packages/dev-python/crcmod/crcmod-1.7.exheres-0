@@ -7,7 +7,7 @@ SUMMARY="crc generator"
 HOMEPAGE="http://pypi.python.org/pypi/${PN}/${PV}"
 DOWNLOADS="http://pypi.python.org/packages/source/c/${PN}/${PNV}.tar.gz"
 
-LICENCES="As-Is"
+LICENCES="as-is"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""

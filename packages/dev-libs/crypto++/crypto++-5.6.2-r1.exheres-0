@@ -12,8 +12,8 @@ HOMEPAGE="http://www.cryptopp.com"
 DOWNLOADS="mirror://sourceforge/cryptopp/cryptopp$(ever delete_all ${PV}).zip"
 
 LICENCES="
-    cryptopp
     Boost-1.0
+    public-domain
 "
 SLOT="0"
 PLATFORMS="~amd64 ~x86"

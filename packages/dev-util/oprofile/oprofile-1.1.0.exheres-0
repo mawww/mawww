@@ -19,6 +19,10 @@ DEPENDENCIES="
         user/oprofile
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Fix-FTBFS-problem-with-GCC-6.patch
+)
+
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --prefix=/usr
     --exec-prefix=/usr/$(exhost --target)
@@ -26,14 +30,9 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 src_prepare() {
+    default
+
     # not compatible with cross, idiotic unit test to begin with. stub.
     echo 'int main() { return 0; }' > libutil/tests/file_tests.c || die
-}
-
-src_configure() {
-    # Without this compiling with gcc 5.1 results in:
-    # Error: operf sample data does not have expected header data
-    export CXXFLAGS="${CXXFLAGS} -fno-merge-constants"
-    default
 }
 

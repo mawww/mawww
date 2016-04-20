@@ -1,7 +1,7 @@
 # Copyright 2014 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require toolchain-funcs github [ user=mawww ]
+require github [ user=mawww ]
 
 SUMMARY="Mawww's experiment for a better code editor"
 
@@ -21,7 +21,6 @@ WORK=${WORK}/src
 src_compile() {
     emake   \
         $(optionq debug || echo debug=no)   \
-        $(libc-is-musl && echo pedantic=no) \
         NCURSESW_INCLUDE=/usr/$(exhost --target)/include/ncursesw
 }
 
@@ -39,7 +38,6 @@ src_test() {
 src_install() {
     emake   \
         $(optionq debug || echo debug=no)   \
-        $(libc-is-musl && echo pedantic=no) \
         NCURSES_INCLUDE=/usr/$(exhost --target)/include/ncursesw    \
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \

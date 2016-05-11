@@ -14,6 +14,13 @@ DEPENDENCIES="
     build+run:
         dev-libs/boost[>=1.50]
         sys-libs/ncurses[>=5.3]
+    suggestion:
+        app-text/editorconfig [[
+            description = [ ${PN} comes with an editorconfig support script ]
+        ]]
+        dev-util/ctags [[
+            description = [ ${PN} comes with a ctags support script ]
+        ]]
 "
 
 WORK=${WORK}/src

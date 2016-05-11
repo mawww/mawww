@@ -49,7 +49,20 @@ src_install() {
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \
         bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
-        docdir="${IMAGE}"/usr/share/doc/${PNV}  \
+        docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
         install
+
+    for f in    "${IMAGE}"/usr/share/man/man1/*.gz \
+                "${IMAGE}"/usr/share/doc/${PNVR}/manpages/*.gz;do
+        gzip -d "$f"
+    done
+
+    for f in "${IMAGE}"/usr/share/doc/${PNVR}/manpages/*;do
+        edo mv "$f" "${IMAGE}"/usr/share/man/man1/kak-${f##*/}.1
+    done
+
+    edo rmdir "${IMAGE}"/usr/share/doc/${PNVR}/manpages
+
+    emagicdocs
 }
 

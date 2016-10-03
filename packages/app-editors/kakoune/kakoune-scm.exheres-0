@@ -1,7 +1,7 @@
 # Copyright 2014 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=mawww ]
+require toolchain-funcs github [ user=mawww ]
 
 SUMMARY="Mawww's experiment for a better code editor"
 
@@ -24,6 +24,12 @@ DEPENDENCIES="
 "
 
 WORK=${WORK}/src
+
+pkg_pretend() {
+    if cxx-is-gcc && ! ever at_least 5 $(gcc-version); then
+        die "${CATEGORY}/${PN} must be built with GCC[>=5] or clang."
+    fi
+}
 
 src_compile() {
     emake   \

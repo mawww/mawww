@@ -1,0 +1,30 @@
+From 7326039de64efeee2040b315fc447121e399f582 Mon Sep 17 00:00:00 2001
+From: Tom Briden <tom@decompile.me.uk>
+Date: Tue, 22 Aug 2017 20:58:19 +0100
+Subject: [PATCH] Fix cross compiling using autoconf detected AR
+
+---
+ configure.init | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/configure.init b/configure.init
+index 338ca87..73a5ed8 100644
+--- a/configure.init
++++ b/configure.init
+@@ -6,6 +6,13 @@ AC_CONFIG_HEADERS(config.h)
+ AM_INIT_AUTOMAKE
+ 
+ dnl Checks for programs.
++m4_ifndef([AC_PROG_AR],[dnl
++  AN_MAKEVAR([AR], [AC_PROG_AR])
++  AN_PROGRAM([ar], [AC_PROG_AR])
++  AC_DEFUN([AC_PROG_AR],
++  [AC_CHECK_TOOL(AR, ar, :)])
++])
++AC_PROG_AR
+ AC_PROG_CC
+ AM_PROG_CC_C_O
+ AC_PROG_CXX
+-- 
+2.14.1
+

@@ -21,6 +21,7 @@ DEPENDENCIES="
 
 src_prepare()
 {
+    expatch "${FILES}"/ar_fix.patch
     edo ./autogen.sh
     default
 }

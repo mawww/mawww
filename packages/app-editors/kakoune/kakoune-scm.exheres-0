@@ -12,7 +12,6 @@ MYOPTIONS="debug"
 
 DEPENDENCIES="
     build+run:
-        dev-libs/boost[>=1.50]
         sys-libs/ncurses[>=5.3]
     suggestion:
         app-text/editorconfig [[
@@ -33,8 +32,7 @@ pkg_pretend() {
 
 src_compile() {
     emake   \
-        $(optionq debug || echo debug=no)   \
-        NCURSESW_INCLUDE=/usr/$(exhost --target)/include/ncursesw
+        $(optionq debug || echo debug=no)
 }
 
 src_test() {
@@ -43,7 +41,7 @@ src_test() {
     # kakoune uses xmessage on crashing, this removes the dependency
     edo printf '#!/bin/sh\ntrue\n' > xmessage
     edo chmod +x xmessage
-    PATH="${WORK}":"${PATH}" default
+    PATH="${WORK}":"${PATH}" TMPDIR=/tmp default
     esandbox disallow_net unix:/tmp/kakoune/paludisbuild
     esandbox disallow_path /tmp
 }
@@ -51,24 +49,15 @@ src_test() {
 src_install() {
     emake   \
         $(optionq debug || echo debug=no)   \
-        NCURSES_INCLUDE=/usr/$(exhost --target)/include/ncursesw    \
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \
         bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
         docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
         install
 
-    for f in    "${IMAGE}"/usr/share/man/man1/*.gz \
-                "${IMAGE}"/usr/share/doc/${PNVR}/manpages/*.gz;do
+    for f in    "${IMAGE}"/usr/share/man/man1/*.gz; do \
         gzip -d "$f"
     done
 
-    for f in "${IMAGE}"/usr/share/doc/${PNVR}/manpages/*;do
-        edo mv "$f" "${IMAGE}"/usr/share/man/man1/kak-${f##*/}.1
-    done
-
-    edo rmdir "${IMAGE}"/usr/share/doc/${PNVR}/manpages
-
     emagicdocs
 }
-

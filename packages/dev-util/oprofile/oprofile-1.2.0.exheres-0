@@ -19,10 +19,6 @@ DEPENDENCIES="
         user/oprofile
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/0001-Fix-FTBFS-problem-with-GCC-6.patch
-)
-
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --prefix=/usr
     --exec-prefix=/usr/$(exhost --target)

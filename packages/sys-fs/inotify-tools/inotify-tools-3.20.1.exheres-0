@@ -1,0 +1,26 @@
+# Copyright 2009 Maxime Coste
+# Copyright 2018 Rasmus Thomsen <cogitri@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=rvoicilas tag=${PV} ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
+
+SUMMARY="simple interface to inotify"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+MYOPTIONS="doc"
+DEPENDENCIES="
+    build:
+        doc? ( app-doc/doxygen )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-static-binary
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc doxygen'
+)
+

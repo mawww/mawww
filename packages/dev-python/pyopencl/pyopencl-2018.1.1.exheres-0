@@ -1,0 +1,31 @@
+# Copyright 2011 Maxime Coste <frrrwww@gmail.com>
+# Copyright 2018 Julian Ospald <hasufell@posteo.de>
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi
+require setup-py [ import=setuptools python_opts=[sqlite] ]
+
+SUMMARY="Python wrapper for OpenCL"
+HOMEPAGE="https://mathema.tician.de/software/pyopencl ${HOMEPAGE}"
+
+LICENCES="Apache-2.0 MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-python/cffi[>=1.1.0][python_abis:*(-)?]
+        dev-python/numpy[python_abis:*(-)?]
+    build+run:
+        dev-python/appdirs[>=1.4.0][python_abis:*(-)?]
+        dev-python/cffi[>=1.1.0][python_abis:*(-)?]
+        dev-python/decorator[>=3.2.0][python_abis:*(-)?]
+        dev-python/numpy[python_abis:*(-)?]
+        dev-python/pytest[>=2][python_abis:*(-)?]
+        dev-python/pytools[>=2017.6][python_abis:*(-)?]
+        dev-python/six[>=1.9.0][python_abis:*(-)?]
+    run:
+        x11-dri/mesa[opencl]
+"
+

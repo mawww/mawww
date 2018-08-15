@@ -1,7 +1,7 @@
 # Copyright 2013 Thomas Witt
 # Distributed under the terms of the GNU General Public License v2
 
-require setup-py [ import=setuptools blacklist="3.1" python_opts="[readline]"  test=pytest ]
+require setup-py [ import=setuptools python_opts="[readline]" test=pytest ]
 
 if ever at_least scm ; then
     require github [ user=davidhalter ]
@@ -16,19 +16,18 @@ LICENCES="GPL-3"
 SLOT="0"
 MYOPTIONS=""
 
+# Also wants unpackaged numpydoc for tests, but works without it too.
 DEPENDENCIES="
+    build+run:
+        dev-python/parso[>=0.3.0][python_abis:*(-)?]
     test:
-        dev-python/docopt
+        dev-python/docopt[python_abis:*(-)?]
+        python_abis:2.7? ( dev-python/typing[python_abis:2.7] )
+        python_abis:3.4? ( dev-python/typing[python_abis:3.4] )
 "
 
 BUGS_TO="pyromaniac@thwitt.de"
 
-# tests still fail for python3
-RESTRICT="test"
-
-test_one_multibuild() {
-    edo cd test
-    edo ${PYTHON} -B run.py
-    edo cd ..
-}
+# Single test broken in 0.12.1, but it works with scm - check in future version
+PYTEST_PARAMS=( -k 'not test_pyc' )
 

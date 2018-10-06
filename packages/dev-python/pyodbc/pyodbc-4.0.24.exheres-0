@@ -1,8 +1,7 @@
 # Copyright 2010 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils [ python_dep=2.6 ]
-require googlecode [ suffix=zip ]
+require pypi setup-py [ import=distutils ]
 
 SUMMARY="Python ODBC library"
 
@@ -15,3 +14,4 @@ DEPENDENCIES="
     build+run:
         dev-db/unixODBC
 "
+

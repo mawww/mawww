@@ -1,0 +1,119 @@
+# Copyright 2009 Maxime Coste
+# Distributed under the terms of the GNU General Public License v2
+
+# Tarball is missing 'qt5-x11embed' and 'rpmalloc' submodules [1], additionally
+# qt5-x11embed has a submodule of its own.
+# [1] https://github.com/LMMS/lmms/issues/4100
+SCM_REPOSITORY="https://github.com/lukas-w/qt5-x11embed"
+SCM_CHECKOUT_TO="qt5-x1embed"
+SCM_UNPACK_TO="${PNV}/src/3rdparty/qt5-x11embed"
+
+SCM_ecm_REPOSITORY="https://github.com/KDE/extra-cmake-modules"
+
+SCM_rpmalloc_REPOSITORY="https://github.com/rampantpixels/rpmalloc.git"
+SCM_CHECKOUT_TO="qt5-x11embed"
+SCM_rpmalloc_UNPACK_TO="${PNV}/src/3rdparty/rpmalloc/rpmalloc"
+
+SCM_SECONDARY_REPOSITORIES="ecm rpmalloc"
+SCM_EXTERNAL_REFS="3rdparty/ECM:ecm"
+
+require scm-git cmake [ api=2 ] github [ user=LMMS tag=v${PV} ]
+require freedesktop-desktop freedesktop-mime gtk-icon-cache
+
+SUMMARY="Free cross-platform alternative to commercial programs like FL Studio®"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="pulseaudio sdl
+    sndio [[ description = [ Adds support for sound output through sndio (OpenBSD sound API, also ported to Linux) ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        x11-libs/qttools:5 [[ note = [ lupdate/lrelease for transaltions ] ]]
+        virtual/pkg-config
+    build+run:
+        media-libs/libogg
+        media-libs/libsndfile[>=1.0.11]
+        media-libs/libsamplerate[>=0.1.8]
+        media-libs/libvorbis
+        media-sound/fluidsynth[>=1.0.7]
+        media-sound/lame
+        sys-libs/zlib
+        sys-sound/alsa-lib
+        sci-libs/fftw[>=3.0.0]
+        x11-libs/fltk
+        x11-libs/libX11
+        x11-libs/libxcb
+        x11-libs/libXinerama
+        x11-libs/qtbase:5
+        x11-libs/qtx11extras:5
+        x11-utils/xcb-util
+        x11-utils/xcb-util-keysyms
+        pulseaudio? ( media-sound/pulseaudio )
+        sdl? ( media-libs/SDL )
+        sndio? ( sys-sound/sndio )
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PNV}-CMake-Fix-mismatching-if-condition-error.patch
+)
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen:BOOL=TRUE
+    -DWANT_ALSA:BOOL=TRUE
+    # CALF LADSPA plugins
+    -DWANT_CALF:BOOL=FALSE
+    # C* Audio Plugin Suite (LADSPA plugins)
+    -DWANT_CAPS:BOOL=FALSE
+    # Player plugin for Gigasampler files
+    -DWANT_GIG:BOOL=FALSE
+    -DWANT_JACK:BOOL=FALSE
+    -DWANT_MP3LAME:BOOL=TRUE
+    -DWANT_OGGVORBIS:BOOL=TRUE
+    -DWANT_PORTAUDIO:BOOL=FALSE
+    -DWANT_QT5:BOOL=TRUE
+    -DWANT_SF2:BOOL=TRUE
+    # libsoundio is a lightweight abstraction over various sound drivers
+    -DWANT_SOUNDIO:BOOL=FALSE
+    # Steve Harris' LADSPA plugins
+    -DWANT_SWH:BOOL=FALSE
+    # Include Tom's Audio Processing LADSPA plugins
+    -DWANT_TAP:BOOL=FALSE
+    # VeSTige plugin to run VST plugins via wine
+    -DWANT_VST:BOOL=FALSE
+)
+
+CMAKE_SRC_CONFIGURE_OPTION_WANTS=(
+    PULSEAUDIO
+    SDL
+    SNDIO
+)
+
+src_prepare() {
+    cmake_src_prepare
+
+    # Do some tinkering to make it work with our multiarch layout
+    edo sed -e "/SET(DATA_DIR / s:share:/usr/share:" \
+        -i cmake/modules/DetectMachine.cmake
+
+    edo sed -e "s:\${CMAKE_INSTALL_PREFIX}/share/man/man1/:/usr/share/man/man1:" \
+        -i src/CMakeLists.txt
+
+    edo sed -e "s:^Exec=env:& LMMS_DATA_DIR=/usr/share/lmms :" \
+        -i cmake/linux/${PN}.desktop
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    freedesktop-mime_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+}
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    freedesktop-mime_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+}
+

@@ -13,8 +13,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        sys-libs/readline
         sys-libs/ncurses
+        sys-libs/readline:=
     run:
         sys-devel/gdb
 "

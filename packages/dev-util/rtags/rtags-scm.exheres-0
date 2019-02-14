@@ -2,11 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_rct_REPOSITORY="https://github.com/Andersbakken/rct"
+SCM_selene_REPOSITORY="https://github.com/jeremyong/Selene.git"
+SCM_lua_REPOSITORY="https://github.com/LuaDist/lua.git"
 
-SCM_SECONDARY_REPOSITORIES="rct"
-SCM_EXTERNAL_REFS="src/rct:rct"
+SCM_SECONDARY_REPOSITORIES="rct selene lua"
+SCM_EXTERNAL_REFS="src/rct:rct src/selene:selene src/lua:lua"
 
-require github [ user=Andersbakken ] cmake
+require github [ user=Andersbakken ] cmake [ api=2 ]
 
 SUMMARY="A c/c++ client/server indexer for c/c++/objc[++] with integration for Emacs based on clang."
 

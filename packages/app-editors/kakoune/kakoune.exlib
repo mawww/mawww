@@ -1,0 +1,63 @@
+# Copyright 2014 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require toolchain-funcs github [ user=mawww ]
+
+SUMMARY="Mawww's experiment for a better code editor"
+
+LICENCES="public-domain"
+SLOT="0"
+MYOPTIONS="debug"
+
+DEPENDENCIES="
+    build+run:
+        sys-libs/ncurses[>=5.3]
+    suggestion:
+        app-text/editorconfig [[
+            description = [ ${PN} comes with an editorconfig support script ]
+        ]]
+        dev-util/ctags [[
+            description = [ ${PN} comes with a ctags support script ]
+        ]]
+"
+
+WORK=${WORK}/src
+
+pkg_pretend() {
+    if cxx-is-gcc && ! ever at_least 5 $(gcc-version); then
+        die "${CATEGORY}/${PN} must be built with GCC[>=5] or clang."
+    fi
+}
+
+src_compile() {
+    emake   \
+        $(optionq debug || echo debug=no)
+}
+
+src_test() {
+    esandbox allow_path /tmp
+    esandbox allow_net unix:/tmp/kakoune/paludisbuild
+    # kakoune uses xmessage on crashing, this removes the dependency
+    edo printf '#!/bin/sh\ntrue\n' > xmessage
+    edo chmod +x xmessage
+    PATH="${WORK}":"${PATH}" TMPDIR=/tmp default
+    esandbox disallow_net unix:/tmp/kakoune/paludisbuild
+    esandbox disallow_path /tmp
+}
+
+src_install() {
+    emake   \
+        $(optionq debug || echo debug=no)   \
+        DESTDIR="${IMAGE}"  \
+        PREFIX=/usr         \
+        bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
+        docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
+        install
+
+    for f in    "${IMAGE}"/usr/share/man/man1/*.gz; do \
+        gzip -d "$f"
+    done
+
+    emagicdocs
+}
+

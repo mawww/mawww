@@ -15,5 +15,7 @@ SLOT="0"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    test:
+        dev-python/docopt[python_abis:*(-)?]
 "
 

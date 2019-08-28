@@ -1,16 +1,20 @@
 # Copyright 2010 Maxime Coste
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils [ python_dep=2.3 ]
+require pypi setup-py [ import=distutils ]
 
-SUMMARY="crc generator"
-HOMEPAGE="http://pypi.python.org/pypi/${PN}/${PV}"
-DOWNLOADS="http://pypi.python.org/packages/source/c/${PN}/${PNV}.tar.gz"
+SUMMARY="CRC generator"
 
-LICENCES="as-is"
+LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
 "
+
+test_one_multibuild() {
+    PYTHONPATH="$(ls -d ${PWD}/build/lib*)" \
+        edo ${PYTHON} -B test/test_crcmod.py
+}
+

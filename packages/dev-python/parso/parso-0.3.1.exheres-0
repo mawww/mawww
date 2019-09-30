@@ -1,7 +1,0 @@
-# Copyright 2018 Alexander Kapshuna <kapsh@kap.sh>
-# Distributed under the terms of the GNU General Public License v2
-
-require parso
-
-PLATFORMS="~amd64"
-

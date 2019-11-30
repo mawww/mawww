@@ -29,6 +29,11 @@ pkg_pretend() {
     fi
 }
 
+src_prepare() {
+    cd "${WORK}"/..
+    default
+}
+
 src_compile() {
     emake   \
         $(optionq debug || echo debug=no)

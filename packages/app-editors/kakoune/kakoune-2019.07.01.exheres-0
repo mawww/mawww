@@ -5,3 +5,8 @@ require kakoune
 
 PLATFORMS="~amd64 ~armv7"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/kakoune-2019.07.01-libcxx.patch
+    "${FILES}"/kakoune-2019.07.01-musl-libcxx.patch
+)
+

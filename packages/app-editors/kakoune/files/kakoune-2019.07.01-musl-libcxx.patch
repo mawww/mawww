@@ -1,0 +1,28 @@
+Upstream: yes
+Source: https://github.com/mawww/kakoune/pull/3234
+
+From dc1cf248468197c9394a498b32897d5b3c080e89 Mon Sep 17 00:00:00 2001
+From: Kylie McClain <kylie@somas.is>
+Date: Fri, 29 Nov 2019 22:50:24 -0500
+Subject: [PATCH] buffer.hh: Fix building on musl+libc++
+
+Fixes #3233.
+---
+ src/buffer.hh | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/buffer.hh b/src/buffer.hh
+index a586e828..24509ba9 100644
+--- a/src/buffer.hh
++++ b/src/buffer.hh
+@@ -12,6 +12,7 @@
+ #include "value.hh"
+ #include "vector.hh"
+ 
++#include <sys/types.h>
+ #include <ctime>
+ 
+ namespace Kakoune
+-- 
+2.24.0
+

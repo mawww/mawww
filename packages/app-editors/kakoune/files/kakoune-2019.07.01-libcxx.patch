@@ -1,0 +1,214 @@
+Upstream: yes
+
+From 16bb55edee4898087aabc89cfefee7002a9ce105 Mon Sep 17 00:00:00 2001
+From: Tobias Kortkamp <t@tobik.me>
+Date: Mon, 1 Jul 2019 16:32:14 +0200
+Subject: [PATCH] Fix build on FreeBSD
+
+file.cc:390:21: error: use of undeclared identifier 'rename'; did you mean 'devname'?
+    if (replace and rename(temp_filename, zfilename) != 0)
+                    ^~~~~~
+                    devname
+/usr/include/stdlib.h:277:7: note: 'devname' declared here
+char    *devname(__dev_t, __mode_t);
+         ^
+file.cc:390:28: error: cannot initialize a parameter of type '__dev_t' (aka 'unsigned long') with an lvalue of type 'char [1024]'
+    if (replace and rename(temp_filename, zfilename) != 0)
+                           ^~~~~~~~~~~~~
+/usr/include/stdlib.h:277:22: note: passing argument to parameter here
+char    *devname(__dev_t, __mode_t);
+                        ^
+2 errors generated.
+
+---
+
+highlighters.cc:1110:13: error: use of undeclared identifier 'snprintf'; did you mean 'vswprintf'?
+            snprintf(buffer, 16, format, std::abs(line_to_format));
+            ^~~~~~~~
+            vswprintf
+/usr/include/wchar.h:139:5: note: 'vswprintf' declared here
+int     vswprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+        ^
+highlighters.cc:1110:22: error: cannot initialize a parameter of type 'wchar_t *' with an lvalue of type 'char [16]'
+            snprintf(buffer, 16, format, std::abs(line_to_format));
+                     ^~~~~~
+/usr/include/wchar.h:139:35: note: passing argument to parameter here
+int     vswprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+                                      ^
+2 errors generated.
+
+---
+
+json_ui.cc:60:13: error: use of undeclared identifier 'sprintf'; did you mean 'swprintf'?
+            sprintf(buf, "\\u%04x", *next);
+            ^~~~~~~
+            swprintf
+/usr/include/wchar.h:133:5: note: 'swprintf' declared here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+        ^
+json_ui.cc:60:21: error: cannot initialize a parameter of type 'wchar_t *' with an lvalue of type 'char [7]'
+            sprintf(buf, "\\u%04x", *next);
+                    ^~~
+/usr/include/wchar.h:133:34: note: passing argument to parameter here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+                                     ^
+json_ui.cc:74:9: error: use of undeclared identifier 'sprintf'
+        sprintf(buffer, R"("#%02x%02x%02x")", color.r, color.g, color.b);
+        ^
+3 errors generated.
+
+---
+
+regex_impl.cc:1039:9: error: use of undeclared identifier 'sprintf'; did you mean 'swprintf'?
+        sprintf(buf, " %03d     ", count++);
+        ^~~~~~~
+        swprintf
+/usr/include/wchar.h:133:5: note: 'swprintf' declared here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+        ^
+regex_impl.cc:1039:17: error: cannot initialize a parameter of type 'wchar_t *' with an lvalue of type 'char [20]'
+        sprintf(buf, " %03d     ", count++);
+                ^~~
+/usr/include/wchar.h:133:34: note: passing argument to parameter here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+                                     ^
+regex_impl.cc:1197:17: error: use of undeclared identifier 'puts'
+    { if (dump) puts(dump_regex(*this).c_str()); }
+                ^
+regex_impl.cc:1208:18: note: in instantiation of member function 'Kakoune::(anonymous namespace)::TestVM<Kakoune::RegexMode::Forward>::TestVM' requested here
+        TestVM<> vm{R"(a*b)"};
+                 ^
+regex_impl.cc:1197:17: error: use of undeclared identifier 'puts'
+    { if (dump) puts(dump_regex(*this).c_str()); }
+                ^
+regex_impl.cc:1283:56: note: in instantiation of member function 'Kakoune::(anonymous namespace)::TestVM<5>::TestVM' requested here
+        TestVM<RegexMode::Forward | RegexMode::Search> vm{R"(f.*a(.*o))"};
+                                                       ^
+regex_impl.cc:1197:17: error: use of undeclared identifier 'puts'
+    { if (dump) puts(dump_regex(*this).c_str()); }
+                ^
+regex_impl.cc:1423:57: note: in instantiation of member function 'Kakoune::(anonymous namespace)::TestVM<6>::TestVM' requested here
+        TestVM<RegexMode::Backward | RegexMode::Search> vm{R"(fo{1,})"};
+                                                        ^
+5 errors generated.
+
+---
+
+remote.cc:829:9: error: use of undeclared identifier 'rename'; did you mean 'devname'?
+    if (rename(old_socket_file.c_str(), new_socket_file.c_str()) != 0)
+        ^~~~~~
+        devname
+/usr/include/stdlib.h:277:7: note: 'devname' declared here
+char    *devname(__dev_t, __mode_t);
+         ^
+remote.cc:829:16: error: cannot initialize a parameter of type '__dev_t' (aka 'unsigned long') with an rvalue of type 'const char *'
+    if (rename(old_socket_file.c_str(), new_socket_file.c_str()) != 0)
+               ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/stdlib.h:277:22: note: passing argument to parameter here
+char    *devname(__dev_t, __mode_t);
+                        ^
+2 errors generated.
+
+---
+
+string_utils.cc:126:20: error: use of undeclared identifier 'sprintf'; did you mean 'swprintf'?
+    res.m_length = sprintf(res.m_data, "%i", val);
+                   ^~~~~~~
+                   swprintf
+/usr/include/wchar.h:133:5: note: 'swprintf' declared here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+        ^
+string_utils.cc:126:28: error: cannot initialize a parameter of type 'wchar_t *' with an lvalue of type 'char [15]'
+    res.m_length = sprintf(res.m_data, "%i", val);
+                           ^~~~~~~~~~
+/usr/include/wchar.h:133:34: note: passing argument to parameter here
+int     swprintf(wchar_t * __restrict, size_t n, const wchar_t * __restrict,
+                                     ^
+string_utils.cc:133:20: error: use of undeclared identifier 'sprintf'; did you mean 'swprintf'?
+    res.m_length = sprintf(res.m_data, "%u", val);
+                   ^~~~~~~
+                   swprintf
+[...]
+---
+ src/file.cc         | 1 +
+ src/highlighters.cc | 2 ++
+ src/json_ui.cc      | 1 +
+ src/regex_impl.cc   | 1 +
+ src/remote.cc       | 1 +
+ src/string_utils.cc | 2 ++
+ 6 files changed, 8 insertions(+)
+
+diff --git a/src/file.cc b/src/file.cc
+index 1bcbd7561..c1f5bb267 100644
+--- a/src/file.cc
++++ b/src/file.cc
+@@ -12,6 +12,7 @@
+ 
+ #include <cerrno>
+ #include <cstdlib>
++#include <cstdio>
+ #include <cstring>
+ #include <dirent.h>
+ #include <fcntl.h>
+diff --git a/src/highlighters.cc b/src/highlighters.cc
+index bb617986b..bc4acf6b7 100644
+--- a/src/highlighters.cc
++++ b/src/highlighters.cc
+@@ -19,6 +19,8 @@
+ #include "utf8_iterator.hh"
+ #include "window.hh"
+ 
++#include <cstdio>
++
+ namespace Kakoune
+ {
+ 
+diff --git a/src/json_ui.cc b/src/json_ui.cc
+index be7c5a739..b8acd6ad4 100644
+--- a/src/json_ui.cc
++++ b/src/json_ui.cc
+@@ -10,6 +10,7 @@
+ #include "unit_tests.hh"
+ #include "value.hh"
+ 
++#include <cstdio>
+ #include <utility>
+ 
+ #include <unistd.h>
+diff --git a/src/regex_impl.cc b/src/regex_impl.cc
+index f17e59844..02db75a03 100644
+--- a/src/regex_impl.cc
++++ b/src/regex_impl.cc
+@@ -10,6 +10,7 @@
+ #include "vector.hh"
+ #include "utils.hh"
+ 
++#include <cstdio>
+ #include <cstring>
+ 
+ namespace Kakoune
+diff --git a/src/remote.cc b/src/remote.cc
+index f4123c813..83fc8adc0 100644
+--- a/src/remote.cc
++++ b/src/remote.cc
+@@ -16,6 +16,7 @@
+ #include <sys/un.h>
+ #include <sys/wait.h>
+ #include <unistd.h>
++#include <stdio.h>
+ #include <string.h>
+ #include <pwd.h>
+ #include <fcntl.h>
+diff --git a/src/string_utils.cc b/src/string_utils.cc
+index e478fd96f..3073a8709 100644
+--- a/src/string_utils.cc
++++ b/src/string_utils.cc
+@@ -4,6 +4,8 @@
+ #include "utf8_iterator.hh"
+ #include "unit_tests.hh"
+ 
++#include <cstdio>
++
+ namespace Kakoune
+ {
+ 

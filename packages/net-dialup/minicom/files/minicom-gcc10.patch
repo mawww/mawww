@@ -1,0 +1,108 @@
+Upstream: Yes
+Source: Adapted from https://salsa.debian.org/minicom-team/minicom
+
+From a42abce083bfbea637f9ff649ad7e8cbaa1a7926 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Lyson=C4=9Bk?= <olysonek@redhat.com>
+Date: Mon, 3 Feb 2020 16:04:54 +0100
+Subject: [PATCH 1/3] Drop superfluous global variable definitions
+
+The file minicom.c, by including the minicom.h header, already defines
+the global variables 'dial_user' and 'dial_pass'. The object file
+minicom.o is always linked to dial.o. Thus the definitions in dial.c
+can be dropped.
+
+This fixes linking with gcc 10 which uses -fno-common by default,
+disallowing multiple global variable definitions.
+---
+ src/dial.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/dial.c b/src/dial.c
+index a90c1d2..500b674 100644
+--- a/src/dial.c
++++ b/src/dial.c
+@@ -146,8 +146,6 @@ static int newtype;
+ /* Access to ".dialdir" denied? */
+ static int dendd = 0;
+ static char *tagged;
+-char *dial_user;
+-char *dial_pass;
+ 
+ /* Change the baud rate.  Treat all characters in the given array as if
+  * they were key presses within the comm parameters dialog (C-A P) and
+-- 
+2.26.2
+
+From 254e84d6974bf69b32903252909fdf040b411147 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Lyson=C4=9Bk?= <olysonek@redhat.com>
+Date: Mon, 3 Feb 2020 16:04:55 +0100
+Subject: [PATCH 2/3] Drop superfluous global variable definitions
+
+The only place where the EXTERN macro mechanism is used to define the
+global variables 'vt_outmap' and 'vt_inmap' is minicom.c (by defining
+an empty EXTERN macro and including the minicom.h header). The file
+vt100.c already defines these variables. The vt100.o object file is
+always linked to minicom.o. Thus it is safe not to define the
+variables in minicom.c and only declare them in the minicom.h header.
+
+This fixes linking with gcc 10 which uses -fno-common by default,
+disallowing multiple global variable definitions.
+---
+ src/minicom.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/minicom.h b/src/minicom.h
+index 061c013..0f9693b 100644
+--- a/src/minicom.h
++++ b/src/minicom.h
+@@ -141,7 +141,7 @@ EXTERN int sbcolor;     /* Status Bar Background Color */
+ EXTERN int st_attr;	/* Status Bar attributes. */
+ 
+ /* jl 04.09.97 conversion tables */
+-EXTERN unsigned char vt_outmap[256], vt_inmap[256];
++extern unsigned char vt_outmap[256], vt_inmap[256];
+ 
+ /* MARK updated 02/17/95 - history buffer */
+ EXTERN int num_hist_lines;  /* History buffer size */
+-- 
+2.26.2
+
+From f332542d321ee76413604574fff5f2ac0132d381 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Lyson=C4=9Bk?= <olysonek@redhat.com>
+Date: Sun, 9 Feb 2020 16:16:59 +0100
+Subject: [PATCH 3/3] Drop superfluous global variable definitions
+
+The only place where the EXTERN macro mechanism is used to define the
+global variables 'portfd_is_socket' and 'portfd_is_connected' is
+minicom.c (by defining an empty EXTERN macro and including the
+minicom.h header). The source file sysdep1_s.c already defines these
+variables. The sysdep1_s.o object file is always linked to
+minicom.o. Thus it is safe to drop the definitions from minicom.c and
+only declare the variables in the minicom.h header.
+
+This fixes linking with gcc 10 which uses -fno-common by default,
+disallowing multiple global variable definitions.
+---
+ src/minicom.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/minicom.h b/src/minicom.h
+index 0f9693b..1e7cb8c 100644
+--- a/src/minicom.h
++++ b/src/minicom.h
+@@ -113,9 +113,9 @@ EXTERN char *dial_user;     /* Our username there */
+ EXTERN char *dial_pass;     /* Our password */
+ 
+ #ifdef USE_SOCKET
+-EXTERN int portfd_is_socket;	/* File descriptor is a unix socket */
+-EXTERN int portfd_is_connected;	/* 1 if the socket is connected */
+-EXTERN struct sockaddr_un portfd_sock_addr;	/* the unix socket address */
++extern int portfd_is_socket;	/* File descriptor is a unix socket */
++extern int portfd_is_connected;	/* 1 if the socket is connected */
++extern struct sockaddr_un portfd_sock_addr;	/* the unix socket address */
+ #define portfd_connected ((portfd_is_socket && !portfd_is_connected) \
+                            ? -1 : portfd)
+ #else
+-- 
+2.26.2
+

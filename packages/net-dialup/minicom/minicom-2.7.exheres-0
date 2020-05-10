@@ -17,6 +17,10 @@ DEPENDENCIES="
         sys-libs/ncurses
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/${PN}-gcc10.patch
+)
+
 src_install() {
     default
     insinto /etc

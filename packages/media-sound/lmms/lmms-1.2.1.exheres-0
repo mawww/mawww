@@ -20,7 +20,7 @@ SCM_EXTERNAL_REFS="3rdparty/ECM:ecm"
 require scm-git cmake [ api=2 ] github [ user=LMMS tag=v${PV} ]
 require freedesktop-desktop freedesktop-mime gtk-icon-cache
 
-SUMMARY="Free cross-platform alternative to commercial programs like FL StudioÂ®"
+SUMMARY="Free cross-platform alternative to commercial programs like FL Studio®"
 
 LICENCES="GPL-2"
 SLOT="0"

@@ -90,6 +90,7 @@ CMAKE_SRC_CONFIGURE_OPTION_WANTS=(
 
 src_prepare() {
     cmake_src_prepare
+}
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst

@@ -56,12 +56,9 @@ DEPENDENCIES="
         sndio? ( sys-sound/sndio )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/${PNV}-CMake-Fix-mismatching-if-condition-error.patch
-)
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
-    -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen:BOOL=TRUE
+    -DUSE_WERROR=FALSE
     -DWANT_ALSA:BOOL=TRUE
     # CALF LADSPA plugins
     -DWANT_CALF:BOOL=FALSE
@@ -94,17 +91,6 @@ CMAKE_SRC_CONFIGURE_OPTION_WANTS=(
 src_prepare() {
     cmake_src_prepare
 
-    # Do some tinkering to make it work with our multiarch layout
-    edo sed -e "/SET(DATA_DIR / s:share:/usr/share:" \
-        -i cmake/modules/DetectMachine.cmake
-
-    edo sed -e "s:\${CMAKE_INSTALL_PREFIX}/share/man/man1/:/usr/share/man/man1:" \
-        -i src/CMakeLists.txt
-
-    edo sed -e "s:^Exec=env:& LMMS_DATA_DIR=/usr/share/lmms :" \
-        -i cmake/linux/${PN}.desktop
-}
-
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
     freedesktop-mime_pkg_postinst
@@ -116,4 +102,3 @@ pkg_postrm() {
     freedesktop-mime_pkg_postrm
     gtk-icon-cache_pkg_postrm
 }
-

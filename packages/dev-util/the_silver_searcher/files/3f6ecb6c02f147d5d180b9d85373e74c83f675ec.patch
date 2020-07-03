@@ -1,0 +1,188 @@
+Source/Upstream: Yes, fixed in git master
+Reason: Fix build with GCC 10
+
+From 21eaa1c4160b868b0c5bbf59da17974429f30055 Mon Sep 17 00:00:00 2001
+From: Shlomi Fish <shlomif@shlomifish.org>
+Date: Wed, 15 Apr 2020 20:23:52 +0300
+Subject: [PATCH] Fix multiple global symbols definitions.
+
+See the use of extern here:
+
+* https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/
+
+* https://en.wikipedia.org/wiki/External_variable
+
+*
+https://stackoverflow.com/questions/496448/how-to-correctly-use-the-extern-keyword-in-c
+
+diff -Naur the_silver_searcher-2.2.0/src/ignore.c the_silver_searcher-2.2.0.new/src/ignore.c
+--- the_silver_searcher-2.2.0/src/ignore.c	2017-12-31 03:07:51.000000000 +0100
++++ the_silver_searcher-2.2.0.new/src/ignore.c	2020-07-03 13:43:37.623747435 +0200
+@@ -20,6 +20,8 @@
+ const int fnmatch_flags = FNM_PATHNAME;
+ #endif
+ 
++ignores *root_ignores;
++
+ /* TODO: build a huge-ass list of files we want to ignore by default (build cache stuff, pyc files, etc) */
+ 
+ const char *evil_hardcoded_ignore_files[] = {
+diff -Naur the_silver_searcher-2.2.0/src/ignore.h the_silver_searcher-2.2.0.new/src/ignore.h
+--- the_silver_searcher-2.2.0/src/ignore.h	2017-06-04 09:58:06.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/ignore.h	2020-07-03 13:43:55.543602768 +0200
+@@ -29,7 +29,7 @@
+ };
+ typedef struct ignores ignores;
+ 
+-ignores *root_ignores;
++extern ignores *root_ignores;
+ 
+ extern const char *evil_hardcoded_ignore_files[];
+ extern const char *ignore_pattern_files[];
+diff -Naur the_silver_searcher-2.2.0/src/log.c the_silver_searcher-2.2.0.new/src/log.c
+--- the_silver_searcher-2.2.0/src/log.c	2017-01-11 08:41:55.000000000 +0100
++++ the_silver_searcher-2.2.0.new/src/log.c	2020-07-03 13:44:18.748415413 +0200
+@@ -4,6 +4,7 @@
+ #include "log.h"
+ #include "util.h"
+ 
++pthread_mutex_t print_mtx = PTHREAD_MUTEX_INITIALIZER;
+ static enum log_level log_threshold = LOG_LEVEL_ERR;
+ 
+ void set_log_level(enum log_level threshold) {
+diff -Naur the_silver_searcher-2.2.0/src/log.h the_silver_searcher-2.2.0.new/src/log.h
+--- the_silver_searcher-2.2.0/src/log.h	2017-01-11 08:41:55.000000000 +0100
++++ the_silver_searcher-2.2.0.new/src/log.h	2020-07-03 13:44:32.307305926 +0200
+@@ -9,7 +9,7 @@
+ #include <pthread.h>
+ #endif
+ 
+-pthread_mutex_t print_mtx;
++extern pthread_mutex_t print_mtx;
+ 
+ enum log_level {
+     LOG_LEVEL_DEBUG = 10,
+diff -Naur the_silver_searcher-2.2.0/src/options.c the_silver_searcher-2.2.0.new/src/options.c
+--- the_silver_searcher-2.2.0/src/options.c	2018-08-07 08:36:00.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/options.c	2020-07-03 13:44:43.613214626 +0200
+@@ -20,6 +20,8 @@
+ const char *color_match = "\033[30;43m";      /* black with yellow background */
+ const char *color_path = "\033[1;32m";        /* bold green */
+ 
++cli_options opts;
++
+ /* TODO: try to obey out_fd? */
+ void usage(void) {
+     printf("\n");
+diff -Naur the_silver_searcher-2.2.0/src/options.h the_silver_searcher-2.2.0.new/src/options.h
+--- the_silver_searcher-2.2.0/src/options.h	2017-06-07 05:28:28.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/options.h	2020-07-03 13:44:59.274088147 +0200
+@@ -91,7 +91,7 @@
+ } cli_options;
+ 
+ /* global options. parse_options gives it sane values, everything else reads from it */
+-cli_options opts;
++extern cli_options opts;
+ 
+ typedef struct option option_t;
+ 
+diff -Naur the_silver_searcher-2.2.0/src/search.c the_silver_searcher-2.2.0.new/src/search.c
+--- the_silver_searcher-2.2.0/src/search.c	2018-08-07 08:35:30.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/search.c	2020-07-03 13:45:42.738737066 +0200
+@@ -2,6 +2,19 @@
+ #include "print.h"
+ #include "scandir.h"
+ 
++size_t alpha_skip_lookup[256];
++size_t *find_skip_lookup;
++uint8_t h_table[H_SIZE] __attribute__((aligned(64)));
++
++work_queue_t *work_queue = NULL;
++work_queue_t *work_queue_tail = NULL;
++int done_adding_files = 0;
++pthread_cond_t files_ready = PTHREAD_COND_INITIALIZER;
++pthread_mutex_t stats_mtx = PTHREAD_MUTEX_INITIALIZER;
++pthread_mutex_t work_queue_mtx = PTHREAD_MUTEX_INITIALIZER;
++
++symdir_t *symhash = NULL;
++
+ void search_buf(const char *buf, const size_t buf_len,
+                 const char *dir_full_path) {
+     int binary = -1; /* 1 = yes, 0 = no, -1 = don't know */
+diff -Naur the_silver_searcher-2.2.0/src/search.h the_silver_searcher-2.2.0.new/src/search.h
+--- the_silver_searcher-2.2.0/src/search.h	2018-01-30 07:02:41.000000000 +0100
++++ the_silver_searcher-2.2.0.new/src/search.h	2020-07-03 13:46:38.941282984 +0200
+@@ -31,9 +31,9 @@
+ #include "uthash.h"
+ #include "util.h"
+ 
+-size_t alpha_skip_lookup[256];
+-size_t *find_skip_lookup;
+-uint8_t h_table[H_SIZE] __attribute__((aligned(64)));
++extern size_t alpha_skip_lookup[256];
++extern size_t *find_skip_lookup;
++extern uint8_t h_table[H_SIZE] __attribute__((aligned(64)));
+ 
+ struct work_queue_t {
+     char *path;
+@@ -41,12 +41,12 @@
+ };
+ typedef struct work_queue_t work_queue_t;
+ 
+-work_queue_t *work_queue;
+-work_queue_t *work_queue_tail;
+-int done_adding_files;
+-pthread_cond_t files_ready;
+-pthread_mutex_t stats_mtx;
+-pthread_mutex_t work_queue_mtx;
++extern work_queue_t *work_queue;
++extern work_queue_t *work_queue_tail;
++extern int done_adding_files;
++extern pthread_cond_t files_ready;
++extern pthread_mutex_t stats_mtx;
++extern pthread_mutex_t work_queue_mtx;
+ 
+ 
+ /* For symlink loop detection */
+@@ -64,7 +64,7 @@
+     UT_hash_handle hh;
+ } symdir_t;
+ 
+-symdir_t *symhash;
++extern symdir_t *symhash;
+ 
+ void search_buf(const char *buf, const size_t buf_len,
+                 const char *dir_full_path);
+diff -Naur the_silver_searcher-2.2.0/src/util.c the_silver_searcher-2.2.0.new/src/util.c
+--- the_silver_searcher-2.2.0/src/util.c	2018-08-07 08:16:09.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/util.c	2020-07-03 13:46:58.900121701 +0200
+@@ -21,6 +21,8 @@
+     }                                     \
+     return ptr;
+ 
++FILE *out_fd = NULL;
++ag_stats stats;
+ void *ag_malloc(size_t size) {
+     void *ptr = malloc(size);
+     CHECK_AND_RETURN(ptr)
+diff -Naur the_silver_searcher-2.2.0/src/util.h the_silver_searcher-2.2.0.new/src/util.h
+--- the_silver_searcher-2.2.0/src/util.h	2018-08-07 08:15:45.000000000 +0200
++++ the_silver_searcher-2.2.0.new/src/util.h	2020-07-03 13:47:19.453955595 +0200
+@@ -12,7 +12,7 @@
+ #include "log.h"
+ #include "options.h"
+ 
+-FILE *out_fd;
++extern FILE *out_fd;
+ 
+ #ifndef TRUE
+ #define TRUE 1
+@@ -51,7 +51,7 @@
+ } ag_stats;
+ 
+ 
+-ag_stats stats;
++extern ag_stats stats;
+ 
+ /* Union to translate between chars and words without violating strict aliasing */
+ typedef union {

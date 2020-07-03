@@ -5,3 +5,7 @@ require the_silver_searcher
 
 PLATFORMS="~amd64"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/3f6ecb6c02f147d5d180b9d85373e74c83f675ec.patch
+)
+

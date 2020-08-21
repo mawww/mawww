@@ -2,8 +2,8 @@
 # Copyright 2018 Rasmus Thomsen <cogitri@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=rvoicilas tag=${PV} ]
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
+require github [ user=rvoicilas release=${PV} suffix=tar.gz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.16 ] ]
 
 SUMMARY="simple interface to inotify"
 

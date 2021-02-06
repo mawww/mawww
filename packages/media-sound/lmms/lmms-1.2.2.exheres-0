@@ -5,7 +5,7 @@
 # qt5-x11embed has a submodule of its own.
 # [1] https://github.com/LMMS/lmms/issues/4100
 SCM_REPOSITORY="https://github.com/lukas-w/qt5-x11embed"
-SCM_CHECKOUT_TO="qt5-x1embed"
+SCM_CHECKOUT_TO="qt5-x11embed"
 SCM_UNPACK_TO="${PNV}/src/3rdparty/qt5-x11embed"
 
 SCM_ecm_REPOSITORY="https://github.com/KDE/extra-cmake-modules"
@@ -62,8 +62,10 @@ CMAKE_SRC_CONFIGURE_PARAMS=(
     -DWANT_ALSA:BOOL=TRUE
     # CALF LADSPA plugins
     -DWANT_CALF:BOOL=FALSE
+    -DWANT_CMT:BOOL=FALSE
     # C* Audio Plugin Suite (LADSPA plugins)
     -DWANT_CAPS:BOOL=FALSE
+    -DWANT_CARLA:BOOL=FALSE
     # Player plugin for Gigasampler files
     -DWANT_GIG:BOOL=FALSE
     -DWANT_JACK:BOOL=FALSE
@@ -90,6 +92,12 @@ CMAKE_SRC_CONFIGURE_OPTION_WANTS=(
 
 src_prepare() {
     cmake_src_prepare
+}
+
+src_install() {
+    default
+    edo cp -r "${IMAGE}"/usr/$(exhost --target)/share/*  "${IMAGE}"/usr/share
+    edo rm -r "${IMAGE}"/usr/$(exhost --target)/share
 }
 
 pkg_postinst() {

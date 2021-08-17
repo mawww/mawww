@@ -16,7 +16,7 @@ DEPENDENCIES="
         app-text/editorconfig [[
             description = [ ${PN} comes with an editorconfig support script ]
         ]]
-        dev-util/ctags [[
+        dev-util/universal-ctags [[
             description = [ ${PN} comes with a ctags support script ]
         ]]
 "

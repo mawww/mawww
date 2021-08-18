@@ -54,6 +54,7 @@ src_install() {
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \
         bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
+        libexecdir="${IMAGE}"/usr/$(exhost --target)/libexec/kak    \
         docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
         install
 

@@ -7,7 +7,7 @@ Subject: [PATCH] Fix gcc6 compile error
 
 References: https://bugzilla.redhat.com/show_bug.cgi?id=1307321
 ---
- src/ApvlvParams.cc | 2 +-
+ src/ApvlvParams.cc | 3 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/ApvlvParams.cc b/src/ApvlvParams.cc
@@ -17,8 +17,7 @@ index 15b491c..b200a5a 100644
 @@ -90,7 +90,7 @@ namespace apvlv
  	return false;
        }
- 
--    while ((getline (os, str)) != NULL)
+
 +    while ((getline (os, str)))
        {
  	string argu, data, crap;

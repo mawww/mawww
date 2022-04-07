@@ -1,0 +1,24 @@
+# Copyright 2022 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=leahneukirchen ]
+
+SUMMARY="Set of Unix utilities for processing and interacting with mail messages"
+
+LICENCES="public-domain"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+src_compile()
+{
+    emake PREFIX="/usr/$(exhost --target)"
+}
+
+src_install()
+{
+    emake DESTDIR="${IMAGE}" PREFIX="/usr/$(exhost --target)" install
+    emagicdocs
+}

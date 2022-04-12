@@ -1,0 +1,16 @@
+# Copyright 2022 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=Igalia ] meson
+
+PLATFORMS="~amd64"
+SUMMARY="Freedesktop.org backend for wpe"
+LICENSES="BSD"
+SLOT="0"
+DEPENDENCIES="
+    build+run:
+        dev-libs/libwpe
+        dev-libs/libepoxy
+        sys-libs/wayland
+        x11-libs/libxkbcommon
+"

@@ -1,0 +1,16 @@
+# Copyright 2022 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=WebPlatformForEmbedded ] cmake [ api=2 ninja=true ]
+
+PLATFORMS="~amd64"
+SUMMARY="General-purpose library specifically developed for the WPE-flavored port of WebKit."
+LICENSES="BSD"
+SLOT="0"
+DEPENDENCIES="
+    build+run:
+        x11-libs/libxkbcommon
+"
+
+RESTRICT="test" # no test suite
+CMAKE_SRC_CONFIGUR_PARAMS=( -DBUILD_DOCS=OFF )

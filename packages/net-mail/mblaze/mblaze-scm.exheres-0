@@ -14,11 +14,11 @@ DEPENDENCIES=""
 
 src_compile()
 {
-    emake PREFIX="/usr/$(exhost --target)"
+    emake PREFIX="/usr/$(exhost --target)" MANDIR=/usr/share/man/
 }
 
 src_install()
 {
-    emake DESTDIR="${IMAGE}" PREFIX="/usr/$(exhost --target)" install
+    emake DESTDIR="${IMAGE}" PREFIX="/usr/$(exhost --target)" MANDIR=/usr/share/man/ install
     emagicdocs
 }

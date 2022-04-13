@@ -5,7 +5,7 @@ require github [ user=WebPlatformForEmbedded ] cmake [ api=2 ninja=true ]
 
 PLATFORMS="~amd64"
 SUMMARY="General-purpose library specifically developed for the WPE-flavored port of WebKit."
-LICENSES="BSD"
+LICENCES="BSD"
 SLOT="0"
 DEPENDENCIES="
     build+run:

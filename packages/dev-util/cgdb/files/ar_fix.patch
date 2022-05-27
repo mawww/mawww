@@ -1,16 +1,20 @@
-From 7326039de64efeee2040b315fc447121e399f582 Mon Sep 17 00:00:00 2001
+Upstream: Pending
+Source: https://github.com/cgdb/cgdb/pull/142
+
+From 4492c40fb714fa2b91f0ba6f340f4f749f402c50 Mon Sep 17 00:00:00 2001
 From: Tom Briden <tom@decompile.me.uk>
 Date: Tue, 22 Aug 2017 20:58:19 +0100
 Subject: [PATCH] Fix cross compiling using autoconf detected AR
 
+Signed-off-by: Tom Briden <tom@decompile.me.uk>
 ---
- configure.init | 7 +++++++
+ configure.ac | 7 +++++++
  1 file changed, 7 insertions(+)
 
-diff --git a/configure.init b/configure.init
-index 338ca87..73a5ed8 100644
---- a/configure.init
-+++ b/configure.init
+diff --git a/configure.ac b/configure.ac
+index fc14fd1..96ae6c5 100644
+--- a/configure.ac
++++ b/configure.ac
 @@ -6,6 +6,13 @@ AC_CONFIG_HEADERS(config.h)
  AM_INIT_AUTOMAKE
  
@@ -26,5 +30,5 @@ index 338ca87..73a5ed8 100644
  AM_PROG_CC_C_O
  AC_PROG_CXX
 -- 
-2.14.1
+2.35.1
 

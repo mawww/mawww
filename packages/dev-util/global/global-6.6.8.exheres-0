@@ -8,14 +8,24 @@ SUMMARY="GNU GLOBAL source code tag system"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="sqlite [[ description = [ Use sqlite 3 API to make tag files ] ]]"
 
 DEPENDENCIES="
-    build:
     build+run:
+        sqlite? ( dev-db/sqlite )
 "
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --without-db185-compat
+    --without-pread-pwrite
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'sqlite sqlite3'
+)
 
 src_install() {
     default
     find ${IMAGE} -depth -type d -empty -exec rmdir {} \;
 }
+

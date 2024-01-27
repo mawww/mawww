@@ -2,9 +2,8 @@
 # Based on lout-3.31.ebuild which is Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
+require github [ user='william8000' ]
 SUMMARY="High-level language for document formatting"
-HOMEPAGE="http://savannah.nongnu.org/projects/${PN}"
-DOWNLOADS="mirror://savannah/${PN}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -16,13 +15,18 @@ DEPENDENCIES="
         zlib? ( sys-libs/zlib[>=1.1.4] )
 "
 
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
+    READMEPDF
+    blurb
+    blurb.short
+    whatsnew
+)
+
 src_compile() {
     local myconf
     option zlib && myconf="$myconf PDF_COMPRESSION=1 ZLIB=-lz"
-    emake BINDIR=/usr/bin \
+    emake CC=${CC} \
         LOUTLIBDIR=/usr/share/lout \
-        LOUTDOCDIR=/usr/share/doc/${PNV} \
-        MANDIR=/usr/share/man/man1 \
         ${myconf} lout prg2lout
 }
 
@@ -37,20 +41,18 @@ compile_doc() {
         einfo " pass $i"
         lout all -o ${docdir}/$1 -e /dev/null
     done
-    # in the last one, let errors be reported
+    # Report errors for the final pass
     einfo " final pass"
     lout all -o ${docdir}/$1 || die "final pass failed"
 }
 
 src_install() {
     local bindir libdir docdir mandir
-    bindir="${IMAGE}/usr/bin"
+    bindir="${IMAGE}/usr/$(exhost --target)/bin"
     libdir="${IMAGE}/usr/share/lout"
     docdir="${IMAGE}/usr/share/doc/${PNV}"
     mandir="${IMAGE}/usr/share/man/man1"
     export LOUTLIB="${libdir}"
-
-    mkdir -p "${bindir}" "${docdir}" "${mandir}"
 
     emake BINDIR="${bindir}" \
           LOUTLIBDIR="${libdir}" \
@@ -58,10 +60,9 @@ src_install() {
           MANDIR="${mandir}" \
           install installdoc installman
 
-    "${bindir}/lout" -x -s "${IMAGE}"/usr/share/lout/include/init || die "lout init failed"
+    "${bindir}/lout" -x -s "${libdir}/include/init" || die "lout init failed"
 
-    mv "${docdir}/README"{,.docs}
-    dodoc README READMEPDF blurb blurb.short whatsnew
+    emagicdocs
 
     # remove this directory if empty
     rmdir "${IMAGE}/usr/share/lout/locale"

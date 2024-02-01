@@ -31,7 +31,8 @@ pkg_pretend() {
 
 src_compile() {
     emake   \
-        $(optionq debug || echo debug=no)
+        $(optionq debug || echo debug=no) \
+        gzip_man=no
 }
 
 src_test() {
@@ -39,28 +40,25 @@ src_test() {
     set_utf8_locale
 
     esandbox allow_path /tmp
-    esandbox allow_net unix:/tmp/kakoune/paludisbuild
+    esandbox allow_net unix:"${TEMP}"
     # kakoune uses xmessage on crashing, this removes the dependency
     edo printf '#!/bin/sh\ntrue\n' > xmessage
     edo chmod +x xmessage
     PATH="${WORK}":"${PATH}" TMPDIR=/tmp default
-    esandbox disallow_net unix:/tmp/kakoune/paludisbuild
+    esandbox disallow_net unix:"${TEMP}"
     esandbox disallow_path /tmp
 }
 
 src_install() {
     emake   \
         $(optionq debug || echo debug=no)   \
+        gzip_man=no \
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \
         bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
         libexecdir="${IMAGE}"/usr/$(exhost --target)/libexec/kak    \
         docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
         install
-
-    for f in    "${IMAGE}"/usr/share/man/man1/*.gz; do \
-        gzip -d "$f"
-    done
 
     emagicdocs
 }

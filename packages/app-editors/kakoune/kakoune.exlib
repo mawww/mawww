@@ -1,7 +1,7 @@
 # Copyright 2014 Maxime Coste <frrrwww@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require toolchain-funcs github [ user=mawww tag=v${PV} ] utf8-locale
+require toolchain-funcs github [ user=mawww suffix=tar.bz2 release=v${PV} ] utf8-locale
 
 SUMMARY="Mawww's experiment for a better code editor"
 
@@ -10,8 +10,6 @@ SLOT="0"
 MYOPTIONS="debug"
 
 DEPENDENCIES="
-    build+run:
-        sys-libs/ncurses[>=5.3]
     suggestion:
         app-text/editorconfig [[
             description = [ ${PN} comes with an editorconfig support script ]
@@ -21,46 +19,46 @@ DEPENDENCIES="
         ]]
 "
 
-WORK=${WORK}/src
-
 pkg_pretend() {
     if cxx-is-gcc && ! ever at_least 7 $(gcc-version); then
         die "${CATEGORY}/${PN} must be built with GCC[>=7] or clang."
     fi
 }
 
+kak_make() {
+    local debug=$(option debug yes no)
+
+    emake \
+        CXX=${CXX} \
+        CXXFLAGS-debug-${debug}="" \
+        debug=${debug} \
+        gzip_man=no \
+        "${@}"
+}
+
 src_compile() {
-    emake   \
-        $(optionq debug || echo debug=no)
+    kak_make
 }
 
 src_test() {
+    local debug=$(option debug yes no)
+
     # Tests require an utf8 locale
     set_utf8_locale
 
-    esandbox allow_path /tmp
-    esandbox allow_net unix:/tmp/kakoune/paludisbuild
-    # kakoune uses xmessage on crashing, this removes the dependency
-    edo printf '#!/bin/sh\ntrue\n' > xmessage
-    edo chmod +x xmessage
-    PATH="${WORK}":"${PATH}" TMPDIR=/tmp default
-    esandbox disallow_net unix:/tmp/kakoune/paludisbuild
-    esandbox disallow_path /tmp
+    esandbox allow_net unix:"${TEMP}/kakoune/**"
+    kak_make check
+    esandbox disallow_net unix:"${TEMP}/kakoune/**"
 }
 
 src_install() {
-    emake   \
-        $(optionq debug || echo debug=no)   \
+    kak_make \
         DESTDIR="${IMAGE}"  \
         PREFIX=/usr         \
         bindir="${IMAGE}"/usr/$(exhost --target)/bin    \
         libexecdir="${IMAGE}"/usr/$(exhost --target)/libexec/kak    \
         docdir="${IMAGE}"/usr/share/doc/${PNVR}  \
         install
-
-    for f in    "${IMAGE}"/usr/share/man/man1/*.gz; do \
-        gzip -d "$f"
-    done
 
     emagicdocs
 }

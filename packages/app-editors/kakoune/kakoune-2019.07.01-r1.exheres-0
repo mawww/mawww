@@ -1,7 +1,0 @@
-# Copyright 2014 Maxime Coste <frrrwww@gmail.com>
-# Distributed under the terms of the GNU General Public License v2
-
-require kakoune
-
-PLATFORMS="~amd64 ~armv7"
-

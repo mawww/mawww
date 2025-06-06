@@ -5,7 +5,3 @@ require kakoune
 
 PLATFORMS="~amd64 ~armv7 ~armv8"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/kakoune-2024.05.18-Require-mandir-to-be-create-before-installing-the-ma.patch
-)
-
